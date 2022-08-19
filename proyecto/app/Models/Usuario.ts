@@ -6,13 +6,13 @@ export default class Usuario extends BaseModel {
   public id: number
 
   @column()
-  public nombre:string;
+  public name:string;
 
   @column()
-  public correo:string;
+  public email:string;
 
   @column()
-  public contrasena:string;
+  public password:string;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
