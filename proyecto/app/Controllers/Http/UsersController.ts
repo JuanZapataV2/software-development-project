@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import User from 'App/Models/Usuario'
+import User from 'App/Models/User'
 import Encryption from '@ioc:Adonis/Core/Encryption'
 
 export default class UsuersController {
