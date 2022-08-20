@@ -14,8 +14,8 @@ export default class extends BaseSchema {
       table.timestamp('updated_at', { useTz: true })
       table.string('name', 60).notNullable()
       table.string('email', 254).notNullable() 
-      table.string('password', 256).notNullable().unique()
-      table.string('role_id', 256).unsigned().references('roles.id').onDelete('CASCADE')
+      table.string('password', 255).notNullable().unique()
+      table.integer('role_id', 255).unsigned().references('roles.id').onDelete('CASCADE')
     })
   }
 
