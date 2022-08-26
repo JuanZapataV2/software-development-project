@@ -1,13 +1,15 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import Encryption from '@ioc:Adonis/Core/Encryption'
+import Profile from '../../Models/Profile';
 
 export default class UsuersController {
   /**
    * Lista todos los usuarios
    */
   public async index(ctx: HttpContextContract) {
-    return User.all()
+    let users: User[] = await User.query().preload('rol').preload('profile')
+    return users;
   }
   /**
    * Almacena la información de un usuario
@@ -22,7 +24,8 @@ export default class UsuersController {
    * Muestra la información de un solo usuario
    */
   public async show({ params }: HttpContextContract) {
-    return User.findOrFail(params.id)
+    let user = await User.query().where("id",params.id).preload('profile');
+    return user
   }
   /**
    * Actualiza la información de un usuario basado
@@ -30,17 +33,36 @@ export default class UsuersController {
    */
   public async update({ params, request }: HttpContextContract) {
     const body = request.body()
-    const the_user = await User.findOrFail(params.id)
-    the_user.name = body.nombre
-    the_user.email = body.correo
+    const the_user:User = await User.findOrFail(params.id)
+    the_user.name = body.name
+    the_user.email = body.email
     the_user.password = Encryption.encrypt(body.password)
+    the_user.role_id = body.role_id;
+
+    if(body.profile){
+      body.profile.user_id=params.id;
+      await this.setProfile(body.profile);
+    }
     return the_user.save()
+  }
+
+  public async setProfile(profile_info){
+    const user_profile=await
+    Profile.findBy('user_id',profile_info.user_id );
+    if(user_profile){
+      user_profile.phone=profile_info.phone;
+      user_profile.facebook_url=profile_info.facebook_url;
+      user_profile.instagram_url=profile_info.instagram_url;
+      await user_profile.save();
+    }else{
+    await Profile.create(profile_info);
+    }
   }
   /**
    * Elimina a un usuario basado en el identificador
    */
   public async destroy({ params }: HttpContextContract) {
-    const el_usuario = await User.findOrFail(params.id)
+    const el_usuario:User = await User.findOrFail(params.id)
     return el_usuario.delete()
   }
 }
