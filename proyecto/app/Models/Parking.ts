@@ -1,5 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, column, belongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
+import ParkingOwner from './ParkingOwner';
+import ParkingSpot from './ParkingSpot';
+import ParkingRating from './ParkingRating';
 
 export default class Parking extends BaseModel {
   @column({ isPrimary: true })
@@ -25,4 +28,22 @@ export default class Parking extends BaseModel {
 
   @column()
   public open_hours:JSON;
+
+  @column()
+  public owner_id:number;
+
+  @belongsTo(()=> ParkingOwner,{
+    foreignKey:'owner_id',
+  })
+  public parking_owner: BelongsTo<typeof ParkingOwner>
+
+  @hasMany(()=>ParkingSpot,{
+    foreignKey:'parking_id'
+  })
+  public parking_spots: HasMany<typeof ParkingSpot>
+
+  @hasMany(()=>ParkingRating,{
+    foreignKey:'parking_id'
+  })
+  public ratings: HasMany<typeof ParkingRating>
 }

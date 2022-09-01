@@ -1,7 +1,11 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import Profile from './Profile';
 import Rol from './Role';
+import Driver from './Driver';
+import ParkingOwner from './ParkingOwner';
+import ParkingRating from './ParkingRating';
+import Reservation from './Reservation';
 
 export default class Usuario extends BaseModel {
   @column({ isPrimary: true })
@@ -34,6 +38,26 @@ export default class Usuario extends BaseModel {
     foreignKey:'role_id',
   })
   public rol: BelongsTo<typeof Rol>
+
+  @belongsTo(()=> Driver,{
+    foreignKey:'user_id',
+  })
+  public driver: BelongsTo<typeof Driver> //Not sure about this, please review it
+
+  @hasMany(() => ParkingRating,{
+    foreignKey:'parking_id' //Nombre clave propagada de la entidad
+  })
+  public user_ratings: HasMany<typeof ParkingRating>
+
+  @hasMany(() => Reservation,{
+    foreignKey:'driver_id' //Nombre clave propagada de la entidad
+  })
+  public user_reservations: HasMany<typeof Reservation>
+
+  @belongsTo(()=> ParkingOwner,{
+    foreignKey:'user_id',
+  })
+  public parking_owner: BelongsTo<typeof ParkingOwner>
 
 
   

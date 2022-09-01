@@ -1,9 +1,33 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import Driver from './Driver';
+import Car from './Car';
+import Motorcycle from './Motorcycle';
 
 export default class Vehicle extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public license_plate:string;
+
+  @belongsTo(()=> Car,{
+    foreignKey:'vehicle_id',
+  })
+  public car: BelongsTo<typeof Car>
+
+  @belongsTo(()=> Motorcycle,{
+    foreignKey:'vehicle_id',
+  })
+  public motorcycle: BelongsTo<typeof Motorcycle>
+
+  @manyToMany(() => Driver, {
+    pivotTable: 'driver_vehicles', //Nombre tabla pivote
+    pivotForeignKey:'vehicle_id',
+    pivotRelatedForeignKey:'driver_id',
+  })
+
+  public drivers: ManyToMany<typeof Driver>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -14,9 +38,5 @@ export default class Vehicle extends BaseModel {
   //@column()
   //public user:User;
 
-  @column()
-  public license_plate:String;
-
-  @column()
-  public observation:String;
+  
 }
