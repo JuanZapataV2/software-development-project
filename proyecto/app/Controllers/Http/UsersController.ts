@@ -68,8 +68,9 @@ export default class UsuersController {
   }
 
 
-  public async testEmail({params}: HttpContextContract){
+  public async testEmail({params, request}: HttpContextContract){
+    const body = request.body()
     let theEmailService:EmailService=new EmailService();
-    theEmailService.sendEmail(params.email,"Nuevo Inicio de Sesión","Usted acaba de iniciar sesión en el sistema.")
+    theEmailService.sendEmail(body.email,"Nuevo Inicio de Sesión","Usted acaba de iniciar sesión en el sistema.")
   }
 }
