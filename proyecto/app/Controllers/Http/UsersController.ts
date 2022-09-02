@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import Encryption from '@ioc:Adonis/Core/Encryption'
 import Profile from '../../Models/Profile';
+import EmailService from 'App/Services/EmailService';
 
 export default class UsuersController {
   /**
@@ -64,5 +65,11 @@ export default class UsuersController {
   public async destroy({ params }: HttpContextContract) {
     const el_usuario:User = await User.findOrFail(params.id)
     return el_usuario.delete()
+  }
+
+
+  public async testEmail({params}: HttpContextContract){
+    let theEmailService:EmailService=new EmailService();
+    theEmailService.sendEmail(params.email,"Nuevo Inicio de Sesión","Usted acaba de iniciar sesión en el sistema.")
   }
 }

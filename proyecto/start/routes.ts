@@ -26,6 +26,7 @@ Route.get('/', async () => {
 
 Route.get("/usuarios","UsuariosController.index");
 Route.post("/usuarios","UsuariosController.store");
+Route.post("/usuarios/testEmail","UsuariosController.testEmail");
 Route.get("/usuarios/:id","UsuariosController.show");
 Route.put("/usuarios/:id","UsuariosController.update");
 Route.delete("/usuarios/:id","UsuariosController.destroy");
