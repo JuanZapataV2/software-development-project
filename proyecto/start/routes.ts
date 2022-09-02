@@ -44,3 +44,9 @@ Route.post("/permission","PermissionsController.store");
 Route.get("/permission/:id","PermissionsController.show");
 Route.put("/permission/:id","PermissionsController.update");
 Route.delete("/permission/:id","PermissionsController.destroy");
+
+
+Route.post("/login","SecuritiesController.login");
+Route.post("/forgot","SecuritiesController.forgotPassword");
+Route.post("/reset","SecuritiesController.resetPassword");
+Route.post("/logout","SecuritiesController.logout");
