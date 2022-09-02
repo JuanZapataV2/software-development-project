@@ -1,11 +1,13 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, BelongsTo, belongsTo, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import Profile from './Profile';
 import Role from './Role';
 import Driver from './Driver';
 import ParkingOwner from './ParkingOwner';
 import ParkingRating from './ParkingRating';
 import Reservation from './Reservation';
+import ApiToken from './ApiToken';
+import Hash from '@ioc:Adonis/Core/Hash';
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -59,6 +61,16 @@ export default class User extends BaseModel {
   })
   public parking_owner: BelongsTo<typeof ParkingOwner>
 
+  @hasMany(() => ApiToken,{
+    foreignKey: 'user_id',
+    })
+    public usuarios: HasMany<typeof ApiToken>
 
+  @beforeSave()
+    public static async hashPassword (el_usuario: User) {
+      if (el_usuario.$dirty.contrasena) {
+        el_usuario.password = await Hash.make(el_usuario.password)
+      }
+    }
   
 }
