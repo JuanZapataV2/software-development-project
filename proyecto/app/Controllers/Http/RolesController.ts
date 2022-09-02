@@ -1,29 +1,29 @@
  import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import Rol from "App/Models/Role";
+import Role from "App/Models/Role";
 import User from 'App/Models/User';
 
 export default class RolesController {
 
 
     public async index(ctx:HttpContextContract){
-        let roles:Rol[]=await Rol.query().preload('permissions')
+        let roles:Role[]=await Role.query().preload('permissions')
             return roles;
         }
         public async store({request}:HttpContextContract){
             const body=request.body();
-            const role:Rol=await Rol.create(body);
+            const role:Role=await Role.create(body);
             return role;
         }
 
         public async show({params}:HttpContextContract) {
-            return Rol.findOrFail(params.id);
+            return Role.findOrFail(params.id);
         }
 
 
         public async update({params,request}:HttpContextContract) {
             const body=request.body();
-            const role:Rol=await Rol.findOrFail(params.id);
+            const role:Role=await Role.findOrFail(params.id);
             role.name=body.name;
             return role.save();
         }
@@ -37,7 +37,7 @@ export default class RolesController {
                     "users":users
                 }
             }else{
-                const role:Rol=await Rol.findOrFail(params.id);
+                const role:Role=await Role.findOrFail(params.id);
                 return role.delete();
             }
         

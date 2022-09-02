@@ -24,9 +24,23 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.get("/usuarios","UsuariosController.index");
-Route.post("/usuarios","UsuariosController.store");
-Route.post("/usuarios/testEmail","UsuariosController.testEmail");
-Route.get("/usuarios/:id","UsuariosController.show");
-Route.put("/usuarios/:id","UsuariosController.update");
-Route.delete("/usuarios/:id","UsuariosController.destroy");
+Route.get("/users","UsersController.index");
+Route.post("/users","UsersController.store");
+Route.post("/users/testEmail","UsersController.testEmail");
+Route.get("/users/:id","UsersController.show");
+Route.put("/users/:id","UsersController.update");
+Route.delete("/users/:id","UsersController.destroy");
+
+
+Route.get("/roles","RolesController.index");
+Route.post("/roles","RolesController.store");
+Route.get("/roles/:id","RolesController.show");
+Route.put("/roles/:id","RolesController.update");
+Route.delete("/roles/:id","RolesController.destroy");
+
+
+Route.get("/permission","PermissionsController.index");
+Route.post("/permission","PermissionsController.store");
+Route.get("/permission/:id","PermissionsController.show");
+Route.put("/permission/:id","PermissionsController.update");
+Route.delete("/permission/:id","PermissionsController.destroy");
