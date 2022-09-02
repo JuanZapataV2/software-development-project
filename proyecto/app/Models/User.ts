@@ -1,13 +1,13 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import Profile from './Profile';
-import Rol from './Role';
+import Role from './Role';
 import Driver from './Driver';
 import ParkingOwner from './ParkingOwner';
 import ParkingRating from './ParkingRating';
 import Reservation from './Reservation';
 
-export default class Usuario extends BaseModel {
+export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
@@ -34,10 +34,10 @@ export default class Usuario extends BaseModel {
   })
   public profile: HasOne<typeof Profile>
 
-  @belongsTo(()=> Rol,{
+  @belongsTo(()=> Role,{
     foreignKey:'role_id',
   })
-  public rol: BelongsTo<typeof Rol>
+  public role: BelongsTo<typeof Role>
 
   @belongsTo(()=> Driver,{
     foreignKey:'user_id',

@@ -8,7 +8,7 @@ export default class UsuersController {
    * Lista todos los usuarios
    */
   public async index(ctx: HttpContextContract) {
-    let users: User[] = await User.query().preload('rol').preload('profile')
+    let users: User[] = await User.query().preload('role').preload('profile')
     return users;
   }
   /**
