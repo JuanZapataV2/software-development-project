@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, hasMany, manyToMany, ManyToMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
 import Driver from './Driver';
 import Car from './Car';
 import Motorcycle from './Motorcycle';
@@ -11,15 +11,15 @@ export default class Vehicle extends BaseModel {
   @column()
   public license_plate:string;
 
-  @belongsTo(()=> Car,{
+  @hasMany(()=> Car,{
     foreignKey:'vehicle_id',
   })
-  public car: BelongsTo<typeof Car>
+  public cars: HasMany<typeof Car>
 
-  @belongsTo(()=> Motorcycle,{
+  @hasMany(()=> Motorcycle,{
     foreignKey:'vehicle_id',
   })
-  public motorcycle: BelongsTo<typeof Motorcycle>
+  public motorcycles: HasMany<typeof Motorcycle>
 
   @manyToMany(() => Driver, {
     pivotTable: 'driver_vehicles', //Nombre tabla pivote

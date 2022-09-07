@@ -38,6 +38,24 @@ Route.get("/roles/:id","RolesController.show");
 Route.put("/roles/:id","RolesController.update");
 Route.delete("/roles/:id","RolesController.destroy");
 
+Route.get("/vehicles","VehiclesController.index");
+Route.post("/vehicles","VehiclesController.store");
+Route.get("/vehicles/:id","VehiclesController.show");
+Route.put("/vehicles/:id","VehiclesController.update");
+Route.delete("/vehicles/:id","VehiclesController.destroy");
+
+Route.get("/vehicles/car","CarsController.index");
+Route.post("/vehicles/car","CarsController.store");
+Route.get("/vehicles/car/:id","CarsController.show");
+Route.put("/vehicles/car/:id","CarsController.update");
+Route.delete("/vehicles/car/:id","CarsController.destroy");
+
+Route.get("/vehicles/motorcycle","MotorcyclesController.index");
+Route.post("/vehicles/motorcycle","MotorcyclesController.store");
+Route.get("/vehicles/motorcycle/:id","MotorcyclesController.show");
+Route.put("/vehicles/motorcycle/:id","MotorcyclesController.update");
+Route.delete("/vehicles/motorcycle/:id","MotorcyclesController.destroy");
+
 
 Route.get("/permission","PermissionsController.index");
 Route.post("/permission","PermissionsController.store");
