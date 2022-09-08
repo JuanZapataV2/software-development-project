@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import User from './User';
 import Parking from './Parking';
 
@@ -10,11 +10,14 @@ export default class ParkingOwner extends BaseModel {
   @column()
   public owner_id:number;
 
+  @column()
+  public user_id:number;
+
   //Revisar herencias
-  @hasMany(()=>User,{
+  @belongsTo(()=>User,{
     foreignKey:'user_id'
   })
-  public users: HasMany<typeof User>
+  public user: BelongsTo<typeof User>
 
   @hasMany(()=>Parking,{
     foreignKey:'owner_id'

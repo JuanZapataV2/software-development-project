@@ -31,6 +31,18 @@ Route.get("/users/:id","UsersController.show");
 Route.put("/users/:id","UsersController.update");
 Route.delete("/users/:id","UsersController.destroy");
 
+Route.get("/users/drivers","DriversController.index");
+Route.post("/users/drivers","DriversController.store");
+Route.get("/users/drivers/:id","DriversController.show");
+Route.put("/users/drivers/:id","DriversController.update");
+Route.delete("/users/drivers/:id","DriversController.destroy");
+
+Route.get("/users/owners","ParkingOwnersController.index");
+Route.post("/users/owners","ParkingOwnersController.store");
+Route.get("/users/owners/:id","ParkingOwnersController.show");
+Route.put("/users/owners/:id","ParkingOwnersController.update");
+Route.delete("/users/owners/:id","ParkingOwnersController.destroy");
+
 
 Route.get("/roles","RolesController.index");
 Route.post("/roles","RolesController.store");
@@ -63,6 +75,17 @@ Route.get("/permission/:id","PermissionsController.show");
 Route.put("/permission/:id","PermissionsController.update");
 Route.delete("/permission/:id","PermissionsController.destroy");
 
+Route.get("/permission-roles","RolePermissionsController.index");
+Route.post("/permission-roles","RolePermissionsController.store");
+Route.get("/permission-roles/:id","RolePermissionsController.show");
+Route.put("/permission-roles/:id","RolePermissionsController.update");
+Route.delete("/permission-roles/:id","RolePermissionsController.destroy");
+
+Route.get("/driver-vehicles","DriverVehiclesController.index");
+Route.post("/driver-vehicles","DriverVehiclesController.store");
+Route.get("/driver-vehicles/:id","DriverVehiclesController.show");
+Route.put("/driver-vehicles/:id","DriverVehiclesController.update");
+Route.delete("/driver-vehicles/:id","DriverVehiclesController.destroy");
 
 Route.post("/login","SecuritiesController.login");
 Route.post("/forgot","SecuritiesController.forgotPassword");

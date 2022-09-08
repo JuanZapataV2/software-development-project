@@ -2,6 +2,8 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Motorcycle from '../../Models/Motorcycle';
 
 export default class MotorcyclesController {
+
+    //TODO: La respuesta siempre resulta vacía :(
     public async index(ctx: HttpContextContract) {
         let motorcycles: Motorcycle[] = await Motorcycle.query().preload('vehicle')
         return motorcycles;
