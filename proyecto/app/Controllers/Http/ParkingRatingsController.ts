@@ -1,28 +1,28 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import ParkingRating from "App/Models/ParkingRating";
 
-import Parking from "App/Models/Parking";
 
+export default class ParkingRatingsController {
 
-export default class ParkingsController {
   public async index(ctx: HttpContextContract) {
-    let parkings: Parking[] = await Parking.query().preload('parking_spots').preload('parking_owner').preload('ratings')
-    return parkings
+    let parkingRatings: ParkingRating[] = await ParkingRating.query().preload('parking').preload('user')
+    return parkingRatings
   }
   public async store({ request }: HttpContextContract) {
     const body = request.body()
-    const parking: Parking = await Parking.create(body)
-    return parking
+    const parkingRating: ParkingRating = await ParkingRating.create(body)
+    return parkingRating
   }
 
   public async show({ params }: HttpContextContract) {
-    return Parking.findOrFail(params.id)
+    return ParkingRating.findOrFail(params.id)
   }
 
   public async update({ params, request }: HttpContextContract) {
     const body = request.body()
-    const parking: Parking = await Parking.findOrFail(params.id)
+    const parkingRating: ParkingRating = await ParkingRating.findOrFail(params.id)
     // aca cuerpo //
-    return parking.save()
+    return parkingRating.save()
   }
 
   public async destroy({ params }: HttpContextContract) {
@@ -36,5 +36,5 @@ export default class ParkingsController {
     //   const role: Parking = await Parking.findOrFail(params.id)
     //   return role.delete()
     // }
+    }
   }
-}
