@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Profile from '../../Models/Profile';
+import EmailService from '../../Services/EmailService';
 
 export default class ProfilesController {
 
@@ -10,6 +11,8 @@ export default class ProfilesController {
 
     public async store({request}:HttpContextContract){
         const body=request.body();
+        let theEmailService:EmailService=new EmailService();
+        theEmailService.sendEmail(body.email,"Creación de cuenta SmartParking","Usted acaba de crear una nueva cuenta en el sistema.")
         const profile:Profile=await Profile.create(body);
         return profile;
     }
