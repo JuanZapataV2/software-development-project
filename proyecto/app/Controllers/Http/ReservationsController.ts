@@ -5,6 +5,10 @@ import Reservation from "App/Models/Reservation";
 export default class ReservationsController {
 
     public async index(ctx: HttpContextContract) {
+        let reservations: Reservation[] = await Reservation.query().preload('driver').preload('parking_spot')
+        return reservations
+      }
+      public async indexVehicle(ctx: HttpContextContract) {
         let reservations: Reservation[] = await Reservation.query().preload('driver').preload('parking_spot').preload('vehicle')
         return reservations
       }

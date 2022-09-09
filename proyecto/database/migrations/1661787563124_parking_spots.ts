@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.integer('parking_id').unsigned().references('parkings.id').onDelete('CASCADE')
       table.string('code')
       table.string('location')
-      table.string('observations')
+      table.string('observations').nullable()
       
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
