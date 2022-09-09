@@ -21,20 +21,13 @@ export default class ParkingRatingsController {
   public async update({ params, request }: HttpContextContract) {
     const body = request.body()
     const parkingRating: ParkingRating = await ParkingRating.findOrFail(params.id)
-    // aca cuerpo //
+    parkingRating.comment = body.comment;
+    parkingRating.rating = body.rating;
     return parkingRating.save()
   }
 
   public async destroy({ params }: HttpContextContract) {
-    // let users = await Parking.query().where('id', params.id)
-    // if (users) {
-    //   return {
-    //     error: 'El rol tiene usuarios asociados',
-    //     users: users,
-    //   }
-    // } else {
-    //   const role: Parking = await Parking.findOrFail(params.id)
-    //   return role.delete()
-    // }
-    }
+    const parkingRating :ParkingRating = await ParkingRating.findOrFail(params.id)
+    return parkingRating.delete()
+  }
   }

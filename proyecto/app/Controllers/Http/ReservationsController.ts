@@ -25,21 +25,19 @@ export default class ReservationsController {
       public async update({ params, request }: HttpContextContract) {
         const body = request.body()
         const reservation: Reservation = await Reservation.findOrFail(params.id)
-        // aca cuerpo //
+        reservation.parking_spot_id = body.parking_spot_id;
+        reservation.vehicle_id = body.vehicle_id;
+        reservation.price = body.price;
+        reservation.start_date = body.start_date;
+        reservation.end_date = body.end_date;
+        reservation.observations = body.observations;
+        reservation.state = body.state;
         return reservation.save()
       }
     
       public async destroy({ params }: HttpContextContract) {
-        // let users = await Parking.query().where('id', params.id)
-        // if (users) {
-        //   return {
-        //     error: 'El rol tiene usuarios asociados',
-        //     users: users,
-        //   }
-        // } else {
-        //   const role: Parking = await Parking.findOrFail(params.id)
-        //   return role.delete()
-        // }
+        const the_reservation :Reservation = await Reservation.findOrFail(params.id)
+        return the_reservation.delete()
       }
 
 }
