@@ -5,9 +5,13 @@ import ParkingSpot from "App/Models/ParkingSpot";
 export default class ParkingSpotsController {
 
     public async index(ctx: HttpContextContract) {
-        let parkingSpots: ParkingSpot[] = await ParkingSpot.query().preload('parking')
+        let parkingSpots: ParkingSpot[] = await ParkingSpot.query()
         return parkingSpots
       }
+    public async indexParking(ctx: HttpContextContract) {
+      let parkingSpots: ParkingSpot[] = await ParkingSpot.query().preload('parking')
+      return parkingSpots
+    }
       public async store({ request }: HttpContextContract) {
         const body = request.body()
         const parkingSpot: ParkingSpot = await ParkingSpot.create(body)

@@ -113,6 +113,7 @@ Route.delete("/parking/:id","ParkingsController.destroy");
 
 //RESERVATION
 Route.get("/reservation","ReservationsController.index");
+Route.get("/reservationVehicle/:vehicle_id","ReservationsController.indexVehicle");
 Route.post("/reservation","ReservationsController.store");
 Route.get("/reservation/:id","ReservationsController.show");
 Route.put("/reservation/:id","ReservationsController.update");
@@ -128,6 +129,7 @@ Route.delete("/parkingRating/:id","ParkingRatingsController.destroy");
 
 //PARKINGSPOT
 Route.get("/parkingSpot","ParkingSpotsController.index");
+Route.get("/parkingSpot/:id_parking","ParkingSpotsController.indexParking");
 Route.post("/parkingSpot","ParkingSpotsController.store");
 Route.get("/parkingSpot/:id","ParkingSpotsController.show");
 Route.put("/parkingSpot/:id","ParkingSpotsController.update");

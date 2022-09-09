@@ -11,10 +11,13 @@ export default class ParkingRating extends BaseModel {
   public rating: number
 
   @column()
-  public comments: string
+  public comment: string
 
   @column()
   parking_id: number
+
+  @column()
+  user_id: number
 
   @belongsTo(()=> Parking,{
     foreignKey:'parking_id',
