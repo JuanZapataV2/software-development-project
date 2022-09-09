@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, HasMany, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, belongsTo, column, hasMany, HasMany, ManyToMany, manyToMany, BelongsTo } from '@ioc:Adonis/Lucid/Orm';
 import Vehicle from './Vehicle';
 import User from './User';
 
@@ -10,10 +10,13 @@ export default class Driver extends BaseModel {
   @column()
   public user_id:number;
 
-  @hasMany(()=>User,{
+  @column()
+  public driver_id:number;
+
+  @belongsTo(()=>User,{
     foreignKey:'user_id'
   })
-  public users: HasMany<typeof User>
+  public user: BelongsTo<typeof User>
 
   
   @manyToMany(() => Vehicle, {

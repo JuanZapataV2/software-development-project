@@ -41,10 +41,10 @@ export default class User extends BaseModel {
   })
   public role: BelongsTo<typeof Role>
 
-  @belongsTo(()=> Driver,{
+  @hasMany(()=> Driver,{
     foreignKey:'user_id',
   })
-  public driver: BelongsTo<typeof Driver> //Not sure about this, please review it
+  public drivers: HasMany<typeof Driver> //Not sure about this, please review it
 
   @hasMany(() => ParkingRating,{
     foreignKey:'parking_id' //Nombre clave propagada de la entidad
@@ -56,10 +56,10 @@ export default class User extends BaseModel {
   })
   public user_reservations: HasMany<typeof Reservation>
 
-  @belongsTo(()=> ParkingOwner,{
+  @hasMany(()=> ParkingOwner,{
     foreignKey:'user_id',
   })
-  public parking_owner: BelongsTo<typeof ParkingOwner>
+  public parking_owners: HasMany<typeof ParkingOwner>
 
   @hasMany(() => ApiToken,{
     foreignKey: 'user_id',
