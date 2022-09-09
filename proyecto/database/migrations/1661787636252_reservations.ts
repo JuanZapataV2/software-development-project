@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.float('price')
       table.datetime('start_date')
       table.datetime('end_date')
-      table.string('observations')
+      table.string('observations').nullable()
       table.integer('state')
       
       /**

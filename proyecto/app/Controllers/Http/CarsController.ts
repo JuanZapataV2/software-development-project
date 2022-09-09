@@ -6,8 +6,9 @@ export default class CarsController {
     
     //TODO: La respuesta siempre resulta vacía :(
     public async index(ctx: HttpContextContract) {
-        let cars: Car[] = await Car.query().preload('vehicle')
-        console.log("Pepe"+cars);
+        console.log("llega");
+        let cars: Car[] = await Car.query().preload("vehicle")
+        //console.log("Pepe"+cars);
         return cars;
     }
 

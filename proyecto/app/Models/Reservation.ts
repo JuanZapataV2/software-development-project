@@ -43,7 +43,7 @@ export default class Reservation extends BaseModel {
 
 
   @column()
-  public observation:string;
+  public observations:string;
 
   @column()
   public price:number;
