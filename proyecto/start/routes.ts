@@ -35,13 +35,13 @@ Route.delete("/users/:id","UsersController.destroy");
 
 //ROLES
 
-Route.get("/users/drivers","DriversController.index");
+Route.get("/users_driver","DriversController.index");
 Route.post("/users/drivers","DriversController.store");
 Route.get("/users/drivers/:id","DriversController.show");
 Route.put("/users/drivers/:id","DriversController.update");
 Route.delete("/users/drivers/:id","DriversController.destroy");
 
-Route.get("/users/owners","ParkingOwnersController.index");
+Route.get("/users_owner","ParkingOwnersController.index");
 Route.post("/users/owners","ParkingOwnersController.store");
 Route.get("/users/owners/:id","ParkingOwnersController.show");
 Route.put("/users/owners/:id","ParkingOwnersController.update");
@@ -63,13 +63,13 @@ Route.get("/vehicles/:id","VehiclesController.show");
 Route.put("/vehicles/:id","VehiclesController.update");
 Route.delete("/vehicles/:id","VehiclesController.destroy");
 
-Route.get("/vehicles/car","CarsController.index");
+Route.get("/vehicles_car","CarsController.index");
 Route.post("/vehicles/car","CarsController.store");
 Route.get("/vehicles/car/:id","CarsController.show");
 Route.put("/vehicles/car/:id","CarsController.update");
 Route.delete("/vehicles/car/:id","CarsController.destroy");
 
-Route.get("/vehicles/motorcycle","MotorcyclesController.index");
+Route.get("/vehicles_motorcyle","MotorcyclesController.index");
 Route.post("/vehicles/motorcycle","MotorcyclesController.store");
 Route.get("/vehicles/motorcycle/:id","MotorcyclesController.show");
 Route.put("/vehicles/motorcycle/:id","MotorcyclesController.update");
