@@ -69,7 +69,7 @@ Route.get("/vehicles/car/:id","CarsController.show");
 Route.put("/vehicles/car/:id","CarsController.update");
 Route.delete("/vehicles/car/:id","CarsController.destroy");
 
-Route.get("/vehicles_motorcyle","MotorcyclesController.index");
+Route.get("/vehicles_motorcycle","MotorcyclesController.index");
 Route.post("/vehicles/motorcycle","MotorcyclesController.store");
 Route.get("/vehicles/motorcycle/:id","MotorcyclesController.show");
 Route.put("/vehicles/motorcycle/:id","MotorcyclesController.update");
