@@ -8,9 +8,11 @@ import PlantillaSeguridad from 'App/Services/EmailTemplates/SecurityTemplate'
 
 export default class SecuritiesController {
   async login({ auth, request, response }) {
+    
     const email = request.input('email')
     const password = request.input('password')
     const el_User = await User.query().where('email', email).firstOrFail()
+    console.log("Password: ",el_User.password);
     if (await Hash.verify(el_User.password, password)) {
       //Generación token
       const token = await auth.use('api').generate(el_User, {

@@ -19,18 +19,12 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import './routes/users'
+import './routes/roles'
 
 Route.get('/', async () => {
   return { hello: 'world' }
 })
-
-//USERS
-Route.get("/users","UsersController.index");
-Route.post("/users","UsersController.store");
-Route.post("/users/testEmail","UsersController.testEmail");
-Route.get("/users/:id","UsersController.show");
-Route.put("/users/:id","UsersController.update");
-Route.delete("/users/:id","UsersController.destroy");
 
 
 //ROLES
@@ -47,13 +41,6 @@ Route.get("/users/owners/:id","ParkingOwnersController.show");
 Route.put("/users/owners/:id","ParkingOwnersController.update");
 Route.delete("/users/owners/:id","ParkingOwnersController.destroy");
 
-
-
-Route.get("/roles","RolesController.index");
-Route.post("/roles","RolesController.store");
-Route.get("/roles/:id","RolesController.show");
-Route.put("/roles/:id","RolesController.update");
-Route.delete("/roles/:id","RolesController.destroy");
 
 
 //PERMISOS

@@ -17,7 +17,7 @@ export default class UsuersController {
    */
   public async store({ request }: HttpContextContract) {
     const body = request.body()
-    body.password = Encryption.encrypt(body.password)
+    //body.password = Encryption.encrypt(body.password)
     const new_user = await User.create(body)
     return new_user
   }
