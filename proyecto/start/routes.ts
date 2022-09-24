@@ -21,6 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 import './routes/users'
 import './routes/roles'
+import './routes/parkings'
 
 Route.get('/', async () => {
   return { hello: 'world' }
@@ -40,29 +41,6 @@ Route.post("/users/owners","ParkingOwnersController.store");
 Route.get("/users/owners/:id","ParkingOwnersController.show");
 Route.put("/users/owners/:id","ParkingOwnersController.update");
 Route.delete("/users/owners/:id","ParkingOwnersController.destroy");
-
-
-
-//PERMISOS
-Route.get("/vehicles","VehiclesController.index");
-Route.post("/vehicles","VehiclesController.store");
-Route.get("/vehicles/:id","VehiclesController.show");
-Route.put("/vehicles/:id","VehiclesController.update");
-Route.delete("/vehicles/:id","VehiclesController.destroy");
-
-Route.get("/vehicles_car","CarsController.index");
-Route.post("/vehicles/car","CarsController.store");
-Route.get("/vehicles/car/:id","CarsController.show");
-Route.put("/vehicles/car/:id","CarsController.update");
-Route.delete("/vehicles/car/:id","CarsController.destroy");
-
-Route.get("/vehicles_motorcycle","MotorcyclesController.index");
-Route.post("/vehicles/motorcycle","MotorcyclesController.store");
-Route.get("/vehicles/motorcycle/:id","MotorcyclesController.show");
-Route.put("/vehicles/motorcycle/:id","MotorcyclesController.update");
-Route.delete("/vehicles/motorcycle/:id","MotorcyclesController.destroy");
-
-
 
 Route.get("/permission","PermissionsController.index");
 Route.post("/permission","PermissionsController.store");
@@ -86,38 +64,10 @@ Route.put("/driver-vehicles/:id","DriverVehiclesController.update");
 Route.delete("/driver-vehicles/:id","DriverVehiclesController.destroy");
 
 
-Route.post("/login","SecuritiesController.login");
-Route.post("/forgot","SecuritiesController.forgotPassword");
-Route.post("/reset","SecuritiesController.resetPassword");
-Route.post("/logout","SecuritiesController.logout");
-
-//PARKING
-Route.get("/parking","ParkingsController.index");
-Route.post("/parking","ParkingsController.store");
-Route.get("/parking/:id","ParkingsController.show");
-Route.put("/parking/:id","ParkingsController.update");
-Route.delete("/parking/:id","ParkingsController.destroy");
-
-//RESERVATION
-Route.get("/reservation","ReservationsController.index");
-Route.get("/reservationVehicle/:vehicle_id","ReservationsController.indexVehicle");
-Route.post("/reservation","ReservationsController.store");
-Route.get("/reservation/:id","ReservationsController.show");
-Route.put("/reservation/:id","ReservationsController.update");
-Route.delete("/reservation/:id","ReservationsController.destroy");
-
-//PARKINGRATING
-Route.get("/parkingRating","ParkingRatingsController.index");
-Route.post("/parkingRating","ParkingRatingsController.store");
-Route.get("/parkingRating/:id","ParkingRatingsController.show");
-Route.put("/parkingRating/:id","ParkingRatingsController.update");
-Route.delete("/parkingRating/:id","ParkingRatingsController.destroy");
 
 
-//PARKINGSPOT
-Route.get("/parkingSpot","ParkingSpotsController.index");
-Route.get("/parkingSpot/:id_parking","ParkingSpotsController.indexParking");
-Route.post("/parkingSpot","ParkingSpotsController.store");
-Route.get("/parkingSpot/:id","ParkingSpotsController.show");
-Route.put("/parkingSpot/:id","ParkingSpotsController.update");
-Route.delete("/parkingSpot/:id","ParkingSpotsController.destroy");
+
+
+
+
+

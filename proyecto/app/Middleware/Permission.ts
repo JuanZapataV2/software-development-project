@@ -9,7 +9,7 @@ export default class Permission {
     const method = request.method();
     const parts = url.split("/");
 
-    // code for middleware goes here. ABOVE THE NEXT CALL
+    // TODO: verificar que el rol tenga determinados permisos
     await next()
   }
 
