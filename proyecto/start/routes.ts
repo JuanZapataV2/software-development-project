@@ -19,6 +19,16 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+<<<<<<< Updated upstream
+=======
+import './routes/users'
+import './routes/roles'
+import './routes/parkings'
+import './routes/vehicles'
+import './routes/reservations'
+import './routes/permission'
+
+>>>>>>> Stashed changes
 
 Route.get('/', async () => {
   return { hello: 'world' }
@@ -33,9 +43,13 @@ Route.put("/users/:id","UsersController.update");
 Route.delete("/users/:id","UsersController.destroy");
 
 
+<<<<<<< Updated upstream
 //ROLES
 
 Route.get("/users/drivers","DriversController.index");
+=======
+Route.get("/users_driver","DriversController.index");
+>>>>>>> Stashed changes
 Route.post("/users/drivers","DriversController.store");
 Route.get("/users/drivers/:id","DriversController.show");
 Route.put("/users/drivers/:id","DriversController.update");
@@ -47,6 +61,7 @@ Route.get("/users/owners/:id","ParkingOwnersController.show");
 Route.put("/users/owners/:id","ParkingOwnersController.update");
 Route.delete("/users/owners/:id","ParkingOwnersController.destroy");
 
+<<<<<<< Updated upstream
 
 
 Route.get("/roles","RolesController.index");
@@ -92,6 +107,8 @@ Route.get("/permission-roles/:id","RolePermissionsController.show");
 Route.put("/permission-roles/:id","RolePermissionsController.update");
 Route.delete("/permission-roles/:id","RolePermissionsController.destroy");
 
+=======
+>>>>>>> Stashed changes
 Route.get("/driver-vehicles","DriverVehiclesController.index");
 Route.post("/driver-vehicles","DriverVehiclesController.store");
 Route.get("/driver-vehicles/:id","DriverVehiclesController.show");

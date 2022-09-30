@@ -1,0 +1,25 @@
+User Type:
+
+admin
+visitor
+parkingOwner
+driver
+
+
+Permissions
+
+admin: 	all
+
+visitor: 	login
+			forgot
+			register(POST users)
+
+parkingOwner: 	GET all GET(from their parking), GET one, POST, PUT, DELETE parkingSpot
+		  		GET all GET(from their parking) parkingRating
+		  		GET all GET one, POST, PUT, DELETE parking
+
+driver:	  GET(all they own), GET(all they own from a car they own), GET one, POST, PUT, DELETE reservation
+		  GET(all they own), GET one, POST, PUT, DELETE vehicle
+		  GET all GET one POST PUT DELETE parkingRating
+		  GET all GET one parking
+		  GET all GET one parkingSpot
