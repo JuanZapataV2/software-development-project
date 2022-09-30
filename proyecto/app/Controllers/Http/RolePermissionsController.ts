@@ -1,5 +1,5 @@
  import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import PermissionRole from '../../Models/PermissionRole';
+import PermissionRole from '../../Models/PermissionsRole';
 
 export default class RolePermissionsController {
 

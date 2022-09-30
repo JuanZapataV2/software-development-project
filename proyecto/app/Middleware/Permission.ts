@@ -16,7 +16,7 @@ export default class PermissionGuard {
     const user_role_id = auth.user?.role_id
 
     let has_permissions:boolean 
-    console.log("lanza:",request.url(),user_role_id, new_url, method)
+
     has_permissions = await this.verifyPermissions(user_role_id, new_url, method)
 
     if (!has_permissions) {
@@ -36,11 +36,13 @@ export default class PermissionGuard {
   
   }
 
+
   protected async verifyPermissions(user_role_id, url, method):Promise<boolean>{
     let role_permissions = await PermissionRole.query().where('role_id', '=', user_role_id)
     for(let i=0;i<role_permissions.length;i++){
       let permission = await Permission.find(role_permissions[i].permission_id)
       if (permission?.url == url && permission?.method == method.toUpperCase()) 
+
         return true
     }
     return false
@@ -50,4 +52,5 @@ export default class PermissionGuard {
   //   let url_route = "/"+parts[1];
 
   // }
+
 }

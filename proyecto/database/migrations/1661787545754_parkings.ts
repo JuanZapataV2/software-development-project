@@ -8,14 +8,12 @@ export default class extends BaseSchema {
       table.increments('id')
 
 
-      table.integer('owner_id').unsigned().references('parking_owners.id').onDelete('CASCADE')
+      table.integer('owner_id').unsigned().references('parking_owners.id').onDelete('NO ACTION')
       table.string('name')
       table.string('address')
       table.string('telephone')
       table.integer('number_spaces').unsigned()
       table.json('open_hours')
-
-      table.unique(['owner_id'])
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

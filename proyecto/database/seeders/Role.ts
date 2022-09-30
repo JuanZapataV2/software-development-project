@@ -11,7 +11,6 @@ export default class extends BaseSeeder {
       {
         name:"visitor",
       },
-      
       {
         name:"parkingOwner",
       },

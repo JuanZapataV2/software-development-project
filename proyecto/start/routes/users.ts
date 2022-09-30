@@ -2,7 +2,6 @@ import Route from '@ioc:Adonis/Core/Route'
 
 
 Route.post("/register","UsersController.store");
-
 Route.post("/login","SecuritiesController.login");
 Route.post("/forgot","SecuritiesController.forgotPassword");
 

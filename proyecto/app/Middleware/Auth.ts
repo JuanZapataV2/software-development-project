@@ -69,7 +69,9 @@ export default class AuthMiddleware {
      * Uses the user defined guards or the default guard mentioned in
      * the config file
      */
+    //console.log("autenticando...")
     const guards = customGuards.length ? customGuards : [auth.name]
+    await auth.use('api').authenticate()
     await this.authenticate(auth, guards)
     await next()
   }

@@ -253,6 +253,7 @@ export default class extends BaseSeeder {
         method: "DELETE",
         id:48
       },     
+
     ])
     // Write your database queries inside the run method
   }

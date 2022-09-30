@@ -9,3 +9,4 @@ Route.group(()=>{
     Route.put("/reservation/:id","ReservationsController.update");
     Route.delete("/reservation/:id","ReservationsController.destroy");
 }).middleware(['auth:api','permission'])
+

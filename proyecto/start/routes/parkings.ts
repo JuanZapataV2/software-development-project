@@ -7,6 +7,7 @@ Route.group(()=>{
     Route.get("/parking/:id","ParkingsController.show");
     Route.put("/parking/:id","ParkingsController.update");
     Route.delete("/parking/:id","ParkingsController.destroy");
+
 }).middleware(['auth:api','permission'])
 
 Route.group(()=>{

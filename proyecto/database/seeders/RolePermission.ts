@@ -361,6 +361,7 @@ export default class extends BaseSeeder {
         role_id:4,
         permission_id: 38
       },
+
     ])
   }
 }
