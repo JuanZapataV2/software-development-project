@@ -19,17 +19,22 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+
 import './routes/users'
 import './routes/roles'
 import './routes/parkings'
+import './routes/vehicles'
+import './routes/reservations'
+import './routes/permission'
+
 
 Route.get('/', async () => {
   return { hello: 'world' }
 })
 
 
-//ROLES
 
+//ROLES
 Route.get("/users_driver","DriversController.index");
 Route.post("/users/drivers","DriversController.store");
 Route.get("/users/drivers/:id","DriversController.show");
@@ -42,20 +47,6 @@ Route.get("/users/owners/:id","ParkingOwnersController.show");
 Route.put("/users/owners/:id","ParkingOwnersController.update");
 Route.delete("/users/owners/:id","ParkingOwnersController.destroy");
 
-Route.get("/permission","PermissionsController.index");
-Route.post("/permission","PermissionsController.store");
-Route.get("/permission/:id","PermissionsController.show");
-Route.put("/permission/:id","PermissionsController.update");
-Route.delete("/permission/:id","PermissionsController.destroy");
-
-
-//SECURITY
-
-Route.get("/permission-roles","RolePermissionsController.index");
-Route.post("/permission-roles","RolePermissionsController.store");
-Route.get("/permission-roles/:id","RolePermissionsController.show");
-Route.put("/permission-roles/:id","RolePermissionsController.update");
-Route.delete("/permission-roles/:id","RolePermissionsController.destroy");
 
 Route.get("/driver-vehicles","DriverVehiclesController.index");
 Route.post("/driver-vehicles","DriverVehiclesController.store");

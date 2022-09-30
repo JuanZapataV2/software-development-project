@@ -6,5 +6,6 @@ Route.group(()=>{
     Route.get("/roles/:id","RolesController.show");
     Route.put("/roles/:id","RolesController.update");
     Route.delete("/roles/:id","RolesController.destroy");
-})
+}).middleware(['auth:api','permission'])
+
 

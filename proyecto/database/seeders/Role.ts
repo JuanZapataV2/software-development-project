@@ -6,10 +6,13 @@ export default class extends BaseSeeder {
     // Write your database queries inside the run method
     await Role.createMany([
       {
-        name:"owner",
+        name:"admin",
       },
       {
         name:"visitor",
+      },
+      {
+        name:"parkingOwner",
       },
       {
         name:"driver",
