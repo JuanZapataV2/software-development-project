@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import PermissionRole from '../Models/PermissionsRole'
 import Permission from '../Models/Permission'
-//import User from 'App/Models/User'
+import User from 'App/Models/User'
 //import Role from 'App/Models/Role'
 import { AuthenticationException } from '@adonisjs/auth/build/standalone'
 
@@ -16,9 +16,11 @@ export default class PermissionGuard {
     const user_role_id = auth.user?.role_id
 
     let has_permissions:boolean 
-
+    
+    
     has_permissions = await this.verifyPermissions(user_role_id, new_url, method)
-
+    // if(parts[2] != undefined)
+    //   has_permissions = await this.isSameUser(parts[1],parts[2],user_id)
     if (!has_permissions) {
       /**
        * The user doesnt have the right permissions for its request
@@ -47,6 +49,20 @@ export default class PermissionGuard {
     }
     return false
   }
+
+  // protected async isSameUser(url, user_url_id,user_id):Promise<boolean>{
+  //   if(url == "users"){
+  //     let user = await User.findOrFail(user_url_id)
+  //     if(user.role_id == 1){
+  //       return true 
+  //     }else {
+  //       if(user.id == user_id)
+  //         return true
+  //       else 
+  //         return false
+  //     }
+  //   }
+  // }
 
   // getUrlParts(parts){
   //   let url_route = "/"+parts[1];
