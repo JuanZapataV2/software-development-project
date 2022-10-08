@@ -7,7 +7,27 @@
     "build": "node ace build --production",
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "nyc node ace test",
+    "test:coverage": "nyc npm run test"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "check-coverage": true,
+    "all": true,
+    "include": [
+      "app/**/!(*.test.*).[tj]s?(x)"
+    ],
+    "exclude": [
+      "tests/**/!(*.test.*).[tj]s?(x)"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "report-dir": "coverage"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +58,7 @@
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.8.1",
+    "@japa/assert": "^1.3.6",
     "@japa/preset-adonis": "^1.1.0",
     "@japa/runner": "^2.0.9",
     "adonis-preset-ts": "^2.1.0",
@@ -56,9 +77,11 @@
     "@adonisjs/core": "^5.8.6",
     "@adonisjs/lucid": "^18.1.0",
     "@adonisjs/repl": "^3.1.11",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@sendgrid/mail": "^7.7.0",
     "luxon": "^3.0.1",
     "mysql": "^2.18.1",
+    "nyc": "^15.1.0",
     "phc-argon2": "^1.1.3",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
