@@ -50,16 +50,14 @@ export default class PermissionGuard {
     url,
     method,
     user_id,
-    user_url_id
   ): Promise<boolean> {
     //Verificación de que el usuario haga cosas sobre si mismo
-    if (url == '/users' && user_role_id != 1) {
-      let user = await User.findOrFail(user_url_id)
-      if (user.role_id == 1) {
-        return true
-      } else {
-        if (user.id == user_id) return true
-      }
+    let user = await User.findOrFail(user_role_id)
+    console.log("user.role_id", user.role_id)
+    if (user.role_id == 1) {
+      return true
+    } else if (url == '/users' && user.id == user_id) {
+      return true
     }
 
     let role_permissions = await PermissionRole.query().where('role_id', '=', user_role_id)

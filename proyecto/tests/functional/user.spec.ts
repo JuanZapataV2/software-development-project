@@ -12,12 +12,11 @@ test.group('User', () => {
     response.assertBodyContains([
       {
         id: 1,
-        created_at: '2022-10-07T23:24:15.000-05:00',
-        updated_at: '2022-10-07T23:24:15.000-05:00',
-        name: 'Juan',
-        email: 'juan@mail.com',
-        password:
-          '$argon2id$v=19$t=3,m=4096,p=1$h+WH2cyrZD70o8riRyI0+A$TyqXU75v1SbprRw6npb8I4lNe8LmUbg90fe1xtmMFjA',
+        created_at: "2022-09-29T21:01:54.000-05:00",
+        updated_at: "2022-09-29T21:01:54.000-05:00",
+        name: "Juan",
+        email: "juan@mail.com",
+        password: "$argon2id$v=19$t=3,m=4096,p=1$0dB8LjvFdNpNB5AWYDYnSw$5bNVMpmM7QB230FLfBR4mzktA9AToOva43NTRUTpFkY",
         role_id: 1,
         profile: null,
       },
@@ -34,20 +33,19 @@ test.group('User', () => {
     response.assertBodyContains([
       {
         id: 1,
-        created_at: '2022-10-07T23:24:15.000-05:00',
-        updated_at: '2022-10-07T23:24:15.000-05:00',
-        name: 'Juan',
-        email: 'juan@mail.com',
-        password:
-          '$argon2id$v=19$t=3,m=4096,p=1$h+WH2cyrZD70o8riRyI0+A$TyqXU75v1SbprRw6npb8I4lNe8LmUbg90fe1xtmMFjA',
+        created_at: "2022-09-29T21:01:54.000-05:00",
+        updated_at: "2022-09-29T21:01:54.000-05:00",
+        name: "Juan",
+        email: "juan@mail.com",
+        password: "$argon2id$v=19$t=3,m=4096,p=1$0dB8LjvFdNpNB5AWYDYnSw$5bNVMpmM7QB230FLfBR4mzktA9AToOva43NTRUTpFkY",
         role_id: 1,
         role: {
-          id: 1,
-          name: 'admin',
-          created_at: '2022-10-07T23:24:14.000-05:00',
-          updated_at: '2022-10-07T23:24:14.000-05:00',
+            id: 1,
+            name: "admin",
+            created_at: "2022-09-29T21:01:54.000-05:00",
+            updated_at: "2022-09-29T21:01:54.000-05:00"
         },
-        profile: null,
+        profile: null
       },
     ])
   })
@@ -96,7 +94,7 @@ test.group('User', () => {
     })
 
     // Edición del usuario
-    const new_user = await User.findBy('email', email + '@mail.com')
+    const new_user = await User.findBy('email', email + '@mail.com') 
     let new_id = new_user.id
 
     const edit_response = await client
@@ -111,6 +109,9 @@ test.group('User', () => {
     const edited_user = await User.findByOrFail('email', email + '@mail.com')
     edit_response.assertStatus(200)
     assert.equal(edited_user.name, 'EditTestEdited')
+
+    // Eliminación para no dejar basura en la base de datos
+    new_user.delete()
   })
 
   test('Delete a user', async ({ client, assert }) => {
