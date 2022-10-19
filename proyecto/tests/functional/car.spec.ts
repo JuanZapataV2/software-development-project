@@ -14,16 +14,16 @@ test.group('Car', () => {
       {
         id: 1,
         vehicle_id: 1,
-        type: 2,
-        created_at: "2022-09-09T16:17:30.000-05:00",
-        updated_at: "2022-09-14T17:07:02.000-05:00",
+        type: 1,
+        created_at: "2022-10-18T11:16:49.000-05:00",
+        updated_at: "2022-10-18T11:16:49.000-05:00",
         vehicle: {
             id: 1,
-            license_plate: "epl533",
-            created_at: "2022-09-09T16:16:56.000-05:00",
-            updated_at: "2022-09-09T16:16:56.000-05:00"
+            license_plate: "abc12a",
+            created_at: "2022-09-29T21:04:11.000-05:00",
+            updated_at: "2022-09-29T21:04:11.000-05:00"
         }
-    }
+      }
     ]
     )
   })
@@ -39,16 +39,16 @@ test.group('Car', () => {
       {
         id: 1,
         vehicle_id: 1,
-        type: 2,
-        created_at: "2022-09-09T16:17:30.000-05:00",
-        updated_at: "2022-09-14T17:07:02.000-05:00",
+        type: 1,
+        created_at: "2022-10-18T11:16:49.000-05:00",
+        updated_at: "2022-10-18T11:16:49.000-05:00",
         vehicle: {
             id: 1,
-            license_plate: "epl533",
-            created_at: "2022-09-09T16:16:56.000-05:00",
-            updated_at: "2022-09-09T16:16:56.000-05:00"
+            license_plate: "abc12a",
+            created_at: "2022-09-29T21:04:11.000-05:00",
+            updated_at: "2022-09-29T21:04:11.000-05:00"
         }
-    }
+      }
     ])
   })
 

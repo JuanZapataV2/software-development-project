@@ -79,7 +79,7 @@ test.group('Vehicle', () => {
     }).loginAs(admin)
     response.assertStatus(200)
 
-    const new_vehicle = await Vehicle.findByOrFail('name', license_plate)
+    const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
     //Eliminación del vehiculo
     const destroy_response = await client.delete(`/vehicles/${new_vehicle.id}`).loginAs(admin)
     destroy_response.assertStatus(200)
