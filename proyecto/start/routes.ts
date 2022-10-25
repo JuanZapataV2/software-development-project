@@ -26,6 +26,8 @@ import './routes/parkings'
 import './routes/vehicles'
 import './routes/reservations'
 import './routes/permission'
+import './routes/profiles'
+
 
 
 Route.get('/', async () => {
