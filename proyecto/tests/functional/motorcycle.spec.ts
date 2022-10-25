@@ -111,5 +111,7 @@ test.group('Motorcycle', () => {
     let new_number_of_motos_resp = await Motorcycle.query().count('* as total')
     let new_number_of_motos = new_number_of_motos_resp[0].$extras.total
     assert.equal(number_of_motos, new_number_of_motos)
+
+    new_vehicle.delete()
   })
 })

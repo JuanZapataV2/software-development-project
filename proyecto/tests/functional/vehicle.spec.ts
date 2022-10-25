@@ -46,7 +46,7 @@ test.group('Vehicle', () => {
     // Obtener ultimo id
     let last_vehicle = await Vehicle.query().orderBy('id', 'desc').first()
     let last_id = last_vehicle.id
-    let license_plate = "zzz999"
+    let license_plate = "tes999"
 
     // Creación nuevo vehiculo
     const response = await client.post('/vehicles').json({

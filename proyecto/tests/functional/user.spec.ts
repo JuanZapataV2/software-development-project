@@ -18,7 +18,15 @@ test.group('User', () => {
         email: "juan@mail.com",
         password: "$argon2id$v=19$t=3,m=4096,p=1$0dB8LjvFdNpNB5AWYDYnSw$5bNVMpmM7QB230FLfBR4mzktA9AToOva43NTRUTpFkY",
         role_id: 1,
-        profile: null,
+        profile: {
+          id: 1,
+          user_id: 1,
+          phone: "3002525",
+          facebook_url: "facebook.com",
+          instagram_url: "instagram/yo.com",
+          created_at: "2022-10-24T18:53:34.000-05:00",
+          updated_at: "2022-10-24T18:54:19.000-05:00"
+      }
       },
     ])
   })
@@ -45,7 +53,15 @@ test.group('User', () => {
             created_at: "2022-09-29T21:01:54.000-05:00",
             updated_at: "2022-09-29T21:01:54.000-05:00"
         },
-        profile: null
+        profile: {
+          id: 1,
+          user_id: 1,
+          phone: "3002525",
+          facebook_url: "facebook.com",
+          instagram_url: "instagram/yo.com",
+          created_at: "2022-10-24T18:53:34.000-05:00",
+          updated_at: "2022-10-24T18:54:19.000-05:00"
+        }
       },
     ])
   })

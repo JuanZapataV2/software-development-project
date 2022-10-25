@@ -80,7 +80,6 @@ test.group('Role-Permisos', () => {
     response.assertStatus(200)
 
     const new_role = await PermissionsRole.findByOrFail('role_id', 2)
-    console.log(new_role.id)
     //Eliminación del permiso
     const destroy_response = await client.delete(`permission-roles/${new_role.id}`).loginAs(admin)
     destroy_response.assertStatus(200)

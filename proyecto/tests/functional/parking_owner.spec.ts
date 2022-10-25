@@ -111,7 +111,7 @@ test.group('Parking Owner', () => {
       new_owner.delete()
     })
   
-    test('Delete a Motorcycle', async ({ client, assert }) => {
+    test('Delete an Owner', async ({ client, assert }) => {
       // Write your test here
       const admin = await User.find(1)
 
@@ -126,7 +126,7 @@ test.group('Parking Owner', () => {
         name: 'NewUser',
         email: email + '@mail.com',
         password: '1234',
-        role_id: 4,
+        role_id: 3,
       })
        
       let last_user = await User.findByOrFail('email', email + '@mail.com')
@@ -138,7 +138,7 @@ test.group('Parking Owner', () => {
       const new_owner = await ParkingOwner.findByOrFail('user_id', last_user.id)
 
       //Eliminación del Owner
-      const destroy_response = await client.delete(`/users/${new_owner.id}`).loginAs(admin)
+      const destroy_response = await client.delete(`/users/owners/${new_owner.id}`).loginAs(admin)
       destroy_response.assertStatus(200)
   
       //Comparación de número de carros

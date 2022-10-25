@@ -77,7 +77,6 @@ test.group('Roles', () => {
     response.assertStatus(200)
 
     const new_role = await Role.findByOrFail('name', name)
-    console.log(new_role.id)
     //Eliminación del rol
     const destroy_response = await client.delete(`/roles/${new_role.id}`).loginAs(admin)
     destroy_response.assertStatus(200)
