@@ -19,12 +19,12 @@ test.group('Vehicle', () => {
       //   drivers: []
       // }
       {
-        "id": 2,
-        "license_plate": "bb222",
-        "created_at": "2022-10-27T01:02:12.000-05:00",
-        "updated_at": "2022-10-27T01:02:12.000-05:00",
-        "drivers": []
-    }
+        id: 2,
+        license_plate: 'bb222',
+        created_at: '2022-10-27T01:02:12.000-05:00',
+        updated_at: '2022-10-27T01:02:12.000-05:00',
+        drivers: [],
+      },
     ])
   })
 
@@ -44,12 +44,12 @@ test.group('Vehicle', () => {
       //     drivers: []
       // }
       {
-        "id": 2,
-        "license_plate": "bb222",
-        "created_at": "2022-10-27T01:02:12.000-05:00",
-        "updated_at": "2022-10-27T01:02:12.000-05:00",
-        "drivers": []
-    },
+        id: 2,
+        license_plate: 'bb222',
+        created_at: '2022-10-27T01:02:12.000-05:00',
+        updated_at: '2022-10-27T01:02:12.000-05:00',
+        drivers: [],
+      },
     ])
   })
 
@@ -102,13 +102,11 @@ test.group('Vehicle', () => {
     const destroy_response = await client.delete(`/vehicles/${new_vehicle.id}`).loginAs(admin)
     destroy_response.assertStatus(200)
 
-    if(destroy_response){
+    if (destroy_response) {
       //Comparación de número de permisos
-    let new_number_of_vehicles_resp = await Vehicle.query().count('* as total')
-    let new_number_of_vehicles = new_number_of_vehicles_resp[0].$extras.total
-    //assert.equal(number_of_vehicles, new_number_of_vehicles)
-
+      let new_number_of_vehicles_resp = await Vehicle.query().count('* as total')
+      let new_number_of_vehicles = new_number_of_vehicles_resp[0].$extras.total
+      //assert.equal(number_of_vehicles, new_number_of_vehicles)
     }
-    
   })
 })

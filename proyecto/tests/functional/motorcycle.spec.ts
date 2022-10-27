@@ -25,18 +25,18 @@ test.group('Motorcycle', () => {
       //     }
       // }
       {
-        "id": 1,
-        "vehicle_id": 2,
-        "helmet": "bb222",
-        "created_at": "2022-10-27T01:07:54.000-05:00",
-        "updated_at": "2022-10-27T01:07:54.000-05:00",
-        "vehicle": {
-            "id": 2,
-            "license_plate": "bb222",
-            "created_at": "2022-10-27T01:02:12.000-05:00",
-            "updated_at": "2022-10-27T01:02:12.000-05:00"
-        }
-    }
+        id: 1,
+        vehicle_id: 2,
+        helmet: 'bb222',
+        created_at: '2022-10-27T01:07:54.000-05:00',
+        updated_at: '2022-10-27T01:07:54.000-05:00',
+        vehicle: {
+          id: 2,
+          license_plate: 'bb222',
+          created_at: '2022-10-27T01:02:12.000-05:00',
+          updated_at: '2022-10-27T01:02:12.000-05:00',
+        },
+      },
     ])
   })
 
@@ -62,18 +62,18 @@ test.group('Motorcycle', () => {
       //     }
       // }
       {
-        "id": 1,
-        "vehicle_id": 2,
-        "helmet": "bb222",
-        "created_at": "2022-10-27T01:07:54.000-05:00",
-        "updated_at": "2022-10-27T01:07:54.000-05:00",
-        "vehicle": {
-            "id": 2,
-            "license_plate": "bb222",
-            "created_at": "2022-10-27T01:02:12.000-05:00",
-            "updated_at": "2022-10-27T01:02:12.000-05:00"
-        }
-    },
+        id: 1,
+        vehicle_id: 2,
+        helmet: 'bb222',
+        created_at: '2022-10-27T01:07:54.000-05:00',
+        updated_at: '2022-10-27T01:07:54.000-05:00',
+        vehicle: {
+          id: 2,
+          license_plate: 'bb222',
+          created_at: '2022-10-27T01:02:12.000-05:00',
+          updated_at: '2022-10-27T01:02:12.000-05:00',
+        },
+      },
     ])
   })
 

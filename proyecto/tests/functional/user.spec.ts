@@ -29,23 +29,24 @@ test.group('User', () => {
       //   }
       // },
       {
-        "id": 1,
-        "created_at": "2022-10-27T00:56:18.000-05:00",
-        "updated_at": "2022-10-27T00:56:18.000-05:00",
-        "name": "Juan",
-        "email": "juan@mail.com",
-        "password": "$argon2id$v=19$t=3,m=4096,p=1$twV5Pi0CyMCilsMq6pOhZA$f3DFgVnc+R2jrpWEL5MoGhesuMMiRSywHBBZuHtcfE4",
-        "role_id": 1,
-        "profile": {
-            "id": 1,
-            "user_id": 1,
-            "phone": "3002525",
-            "facebook_url": "facebook.com",
-            "instagram_url": "instagram.com",
-            "created_at": "2022-10-27T00:57:47.000-05:00",
-            "updated_at": "2022-10-27T00:57:47.000-05:00"
-        }
-    }
+        id: 1,
+        created_at: '2022-10-27T00:56:18.000-05:00',
+        updated_at: '2022-10-27T00:56:18.000-05:00',
+        name: 'Juan',
+        email: 'juan@mail.com',
+        password:
+          '$argon2id$v=19$t=3,m=4096,p=1$twV5Pi0CyMCilsMq6pOhZA$f3DFgVnc+R2jrpWEL5MoGhesuMMiRSywHBBZuHtcfE4',
+        role_id: 1,
+        profile: {
+          id: 1,
+          user_id: 1,
+          phone: '3002525',
+          facebook_url: 'facebook.com',
+          instagram_url: 'instagram.com',
+          created_at: '2022-10-27T00:57:47.000-05:00',
+          updated_at: '2022-10-27T00:57:47.000-05:00',
+        },
+      },
     ])
   })
 
@@ -82,29 +83,30 @@ test.group('User', () => {
       //   }
       // },
       {
-        "id": 1,
-        "created_at": "2022-10-27T00:56:18.000-05:00",
-        "updated_at": "2022-10-27T00:56:18.000-05:00",
-        "name": "Juan",
-        "email": "juan@mail.com",
-        "password": "$argon2id$v=19$t=3,m=4096,p=1$twV5Pi0CyMCilsMq6pOhZA$f3DFgVnc+R2jrpWEL5MoGhesuMMiRSywHBBZuHtcfE4",
-        "role_id": 1,
-        "profile": {
-            "id": 1,
-            "user_id": 1,
-            "phone": "3002525",
-            "facebook_url": "facebook.com",
-            "instagram_url": "instagram.com",
-            "created_at": "2022-10-27T00:57:47.000-05:00",
-            "updated_at": "2022-10-27T00:57:47.000-05:00"
+        id: 1,
+        created_at: '2022-10-27T00:56:18.000-05:00',
+        updated_at: '2022-10-27T00:56:18.000-05:00',
+        name: 'Juan',
+        email: 'juan@mail.com',
+        password:
+          '$argon2id$v=19$t=3,m=4096,p=1$twV5Pi0CyMCilsMq6pOhZA$f3DFgVnc+R2jrpWEL5MoGhesuMMiRSywHBBZuHtcfE4',
+        role_id: 1,
+        profile: {
+          id: 1,
+          user_id: 1,
+          phone: '3002525',
+          facebook_url: 'facebook.com',
+          instagram_url: 'instagram.com',
+          created_at: '2022-10-27T00:57:47.000-05:00',
+          updated_at: '2022-10-27T00:57:47.000-05:00',
         },
-        "role": {
-            "id": 1,
-            "name": "admin",
-            "created_at": "2022-10-27T00:56:18.000-05:00",
-            "updated_at": "2022-10-27T00:56:18.000-05:00"
-        }
-    }
+        role: {
+          id: 1,
+          name: 'admin',
+          created_at: '2022-10-27T00:56:18.000-05:00',
+          updated_at: '2022-10-27T00:56:18.000-05:00',
+        },
+      },
     ])
   })
 
@@ -195,14 +197,11 @@ test.group('User', () => {
     //Eliminación del usuario
     const destroy_response = await client.delete(`/users/${new_user.id}`).loginAs(admin)
     destroy_response.assertStatus(200)
-    if(destroy_response){
+    if (destroy_response) {
       //Comparación de número de usuarios
       let new_number_of_users_resp = await User.query().count('* as total')
       let new_number_of_users = new_number_of_users_resp[0].$extras.total
       //assert.equal(number_of_users, new_number_of_users)
-
     }
-
-    
   })
 })

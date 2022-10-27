@@ -24,16 +24,16 @@ test.group('Parking', () => {
       //     updated_at: "2022-09-29T21:10:10.000-05:00"
       // }
       {
-        "id": 1,
-        "owner_id": 1,
-        "name": "parqueadero Test",
-        "address": "test123",
-        "telephone": "12test",
-        "number_spaces": 50,
-        "open_hours": "{\"hours\": \"27 hours\"}",
-        "created_at": "2022-10-27T01:10:51.000-05:00",
-        "updated_at": "2022-10-27T01:10:51.000-05:00"
-    }
+        id: 1,
+        owner_id: 1,
+        name: 'parqueadero Test',
+        address: 'test123',
+        telephone: '12test',
+        number_spaces: 50,
+        open_hours: '{"hours": "27 hours"}',
+        created_at: '2022-10-27T01:10:51.000-05:00',
+        updated_at: '2022-10-27T01:10:51.000-05:00',
+      }
     )
   })
 
@@ -73,23 +73,23 @@ test.group('Parking', () => {
       //     }
       // },
       {
-        "id": 1,
-        "owner_id": 1,
-        "name": "parqueadero Test",
-        "address": "test123",
-        "telephone": "12test",
-        "number_spaces": 50,
-        "open_hours": "{\"hours\": \"27 hours\"}",
-        "created_at": "2022-10-27T01:10:51.000-05:00",
-        "updated_at": "2022-10-27T01:10:51.000-05:00",
-        "parking_owner": {
-            "id": 1,
-            "user_id": 9,
-            "created_at": "2022-10-27T01:10:51.000-05:00",
-            "updated_at": "2022-10-27T01:10:51.000-05:00"
+        id: 1,
+        owner_id: 1,
+        name: 'parqueadero Test',
+        address: 'test123',
+        telephone: '12test',
+        number_spaces: 50,
+        open_hours: '{"hours": "27 hours"}',
+        created_at: '2022-10-27T01:10:51.000-05:00',
+        updated_at: '2022-10-27T01:10:51.000-05:00',
+        parking_owner: {
+          id: 1,
+          user_id: 9,
+          created_at: '2022-10-27T01:10:51.000-05:00',
+          updated_at: '2022-10-27T01:10:51.000-05:00',
         },
-        "parking_spots": []
-    },
+        parking_spots: [],
+      },
     ])
   })
 
@@ -177,25 +177,22 @@ test.group('Parking', () => {
       response.assertStatus(200)
       const new_parking = await Parking.findByOrFail('id', response.response._body.id)
 
-      if(new_parking){
+      if (new_parking) {
         //Eliminación del parking
         const destroy_response = await client.delete(`/parking/${new_parking.id}`).loginAs(admin)
         destroy_response.assertStatus(200)
 
         //Comparación de número de parqueaderos
-        if(destroy_response){
+        if (destroy_response) {
           let new_number_of_parkings_resp = await Parking.query().count('* as total')
           let new_number_of_parkings = new_number_of_parkings_resp[0].$extras.total
           //assert.equal(number_of_parkings, new_number_of_parkings)
-  
+
           // Eliminación para no dejar basura en la base de datos
           last_user.delete()
           last_owner.delete()
         }
-        
       }
-
-      
     }
   })
 })

@@ -21,14 +21,14 @@ test.group('Profile', () => {
       //     updated_at: "2022-10-24T18:54:19.000-05:00"
       //   }
       {
-        "id": 1,
-        "user_id": 1,
-        "phone": "3002525",
-        "facebook_url": "facebook.com",
-        "instagram_url": "instagram.com",
-        "created_at": "2022-10-27T00:57:47.000-05:00",
-        "updated_at": "2022-10-27T00:57:47.000-05:00"
-    }
+        id: 1,
+        user_id: 1,
+        phone: '3002525',
+        facebook_url: 'facebook.com',
+        instagram_url: 'instagram.com',
+        created_at: '2022-10-27T00:57:47.000-05:00',
+        updated_at: '2022-10-27T00:57:47.000-05:00',
+      }
     )
   })
 
@@ -50,14 +50,14 @@ test.group('Profile', () => {
       //   updated_at: "2022-10-24T18:54:19.000-05:00"
       // }
       {
-        "id": 1,
-        "user_id": 1,
-        "phone": "3002525",
-        "facebook_url": "facebook.com",
-        "instagram_url": "instagram.com",
-        "created_at": "2022-10-27T00:57:47.000-05:00",
-        "updated_at": "2022-10-27T00:57:47.000-05:00"
-    },
+        id: 1,
+        user_id: 1,
+        phone: '3002525',
+        facebook_url: 'facebook.com',
+        instagram_url: 'instagram.com',
+        created_at: '2022-10-27T00:57:47.000-05:00',
+        updated_at: '2022-10-27T00:57:47.000-05:00',
+      },
     ])
   })
 

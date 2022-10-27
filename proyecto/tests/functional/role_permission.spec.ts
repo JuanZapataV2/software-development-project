@@ -20,12 +20,12 @@ test.group('Role-Permisos', () => {
       //     updated_at: "2022-09-29T21:01:54.000-05:00"
       // }
       {
-        "id": 1,
-        "role_id": 1,
-        "permission_id": 1,
-        "created_at": "2022-10-27T00:56:18.000-05:00",
-        "updated_at": "2022-10-27T00:56:18.000-05:00"
-    }
+        id: 1,
+        role_id: 1,
+        permission_id: 1,
+        created_at: '2022-10-27T00:56:18.000-05:00',
+        updated_at: '2022-10-27T00:56:18.000-05:00',
+      }
     )
   })
 
@@ -38,12 +38,12 @@ test.group('Role-Permisos', () => {
     response.assertStatus(200)
     response.assertBodyContains([
       {
-        "id": 1,
-        "role_id": 1,
-        "permission_id": 1,
-        "created_at": "2022-10-27T00:56:18.000-05:00",
-        "updated_at": "2022-10-27T00:56:18.000-05:00"
-    },
+        id: 1,
+        role_id: 1,
+        permission_id: 1,
+        created_at: '2022-10-27T00:56:18.000-05:00',
+        updated_at: '2022-10-27T00:56:18.000-05:00',
+      },
     ])
   })
 
@@ -91,7 +91,7 @@ test.group('Role-Permisos', () => {
       .loginAs(admin)
     response.assertStatus(200)
 
-    const new_role = await PermissionsRole.findByOrFail("id",response.response._body.id)
+    const new_role = await PermissionsRole.findByOrFail('id', response.response._body.id)
     //Eliminación del permiso
     const destroy_response = await client.delete(`permission-roles/${new_role.id}`).loginAs(admin)
     destroy_response.assertStatus(200)

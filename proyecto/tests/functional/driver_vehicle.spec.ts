@@ -21,13 +21,13 @@ test.group('Driver vehicle', () => {
       //     updated_at: "2022-10-21T17:14:10.000-05:00"
       // }
       {
-        "id": 4,
-        "vehicle_id": null,
-        "driver_id": null,
-        "use_date": "2022-08-09T05:00:00.000Z",
-        "created_at": "2022-10-27T01:10:50.000-05:00",
-        "updated_at": "2022-10-27T01:10:50.000-05:00"
-    }
+        id: 4,
+        vehicle_id: null,
+        driver_id: null,
+        use_date: '2022-08-09T05:00:00.000Z',
+        created_at: '2022-10-27T01:10:50.000-05:00',
+        updated_at: '2022-10-27T01:10:50.000-05:00',
+      }
     )
   })
 
@@ -48,13 +48,13 @@ test.group('Driver vehicle', () => {
       //     updated_at: "2022-10-21T17:14:10.000-05:00"
       // }
       {
-        "id": 4,
-        "vehicle_id": null,
-        "driver_id": null,
-        "use_date": "2022-08-09T05:00:00.000Z",
-        "created_at": "2022-10-27T01:10:50.000-05:00",
-        "updated_at": "2022-10-27T01:10:50.000-05:00"
-    },
+        id: 4,
+        vehicle_id: null,
+        driver_id: null,
+        use_date: '2022-08-09T05:00:00.000Z',
+        created_at: '2022-10-27T01:10:50.000-05:00',
+        updated_at: '2022-10-27T01:10:50.000-05:00',
+      },
     ])
   })
 

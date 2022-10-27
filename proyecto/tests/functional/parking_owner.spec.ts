@@ -50,33 +50,34 @@ test.group('Parking Owner', () => {
       //   ]
       // }
       {
-        "id": 1,
-        "user_id": 9,
-        "created_at": "2022-10-27T01:10:51.000-05:00",
-        "updated_at": "2022-10-27T01:10:51.000-05:00",
-        "user": {
-            "id": 9,
-            "created_at": "2022-10-27T01:10:51.000-05:00",
-            "updated_at": "2022-10-27T01:10:51.000-05:00",
-            "name": "NewUser",
-            "email": "012lu3vijh58@mail.com",
-            "password": "$argon2id$v=19$t=3,m=4096,p=1$UZbVfNwPTcomVo/r+qoYzQ$9U7ht0U7yYqQxLUoDVt0IFKAXzc5Ei5M5T1yB2fjo4w",
-            "role_id": 3
+        id: 1,
+        user_id: 9,
+        created_at: '2022-10-27T01:10:51.000-05:00',
+        updated_at: '2022-10-27T01:10:51.000-05:00',
+        user: {
+          id: 9,
+          created_at: '2022-10-27T01:10:51.000-05:00',
+          updated_at: '2022-10-27T01:10:51.000-05:00',
+          name: 'NewUser',
+          email: '012lu3vijh58@mail.com',
+          password:
+            '$argon2id$v=19$t=3,m=4096,p=1$UZbVfNwPTcomVo/r+qoYzQ$9U7ht0U7yYqQxLUoDVt0IFKAXzc5Ei5M5T1yB2fjo4w',
+          role_id: 3,
         },
-        "parkings": [
-            {
-                "id": 1,
-                "owner_id": 1,
-                "name": "parqueadero Test",
-                "address": "test123",
-                "telephone": "12test",
-                "number_spaces": 50,
-                "open_hours": "{\"hours\": \"27 hours\"}",
-                "created_at": "2022-10-27T01:10:51.000-05:00",
-                "updated_at": "2022-10-27T01:10:51.000-05:00"
-            }
-        ]
-    }
+        parkings: [
+          {
+            id: 1,
+            owner_id: 1,
+            name: 'parqueadero Test',
+            address: 'test123',
+            telephone: '12test',
+            number_spaces: 50,
+            open_hours: '{"hours": "27 hours"}',
+            created_at: '2022-10-27T01:10:51.000-05:00',
+            updated_at: '2022-10-27T01:10:51.000-05:00',
+          },
+        ],
+      },
     ])
   })
 
@@ -104,20 +105,21 @@ test.group('Parking Owner', () => {
       //   }
       // }
       {
-        "id": 1,
-        "user_id": 9,
-        "created_at": "2022-10-27T01:10:51.000-05:00",
-        "updated_at": "2022-10-27T01:10:51.000-05:00",
-        "user": {
-            "id": 9,
-            "created_at": "2022-10-27T01:10:51.000-05:00",
-            "updated_at": "2022-10-27T01:10:51.000-05:00",
-            "name": "NewUser",
-            "email": "012lu3vijh58@mail.com",
-            "password": "$argon2id$v=19$t=3,m=4096,p=1$UZbVfNwPTcomVo/r+qoYzQ$9U7ht0U7yYqQxLUoDVt0IFKAXzc5Ei5M5T1yB2fjo4w",
-            "role_id": 3
-        }
-    },
+        id: 1,
+        user_id: 9,
+        created_at: '2022-10-27T01:10:51.000-05:00',
+        updated_at: '2022-10-27T01:10:51.000-05:00',
+        user: {
+          id: 9,
+          created_at: '2022-10-27T01:10:51.000-05:00',
+          updated_at: '2022-10-27T01:10:51.000-05:00',
+          name: 'NewUser',
+          email: '012lu3vijh58@mail.com',
+          password:
+            '$argon2id$v=19$t=3,m=4096,p=1$UZbVfNwPTcomVo/r+qoYzQ$9U7ht0U7yYqQxLUoDVt0IFKAXzc5Ei5M5T1yB2fjo4w',
+          role_id: 3,
+        },
+      },
     ])
   })
 
