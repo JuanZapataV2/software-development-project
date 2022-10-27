@@ -41,7 +41,6 @@ export default class PermissionGuard {
     }
 
     // The user has permission
-    console.log('Permiso otorgado')
     await next()
   }
 

@@ -106,6 +106,67 @@ test.group('Driver vehicle', () => {
     new_driverVehicle.delete()
   })
 
+  test('Edit a Driver-vehicle', async ({ client, assert }) => {
+    const admin = await User.find(1)
+
+    //Crear Usuario
+    let email = (Math.random() * 10).toString(36).replace('.', '')
+
+    await client.post('/register').json({
+      name: 'NewUser',
+      email: email + '@mail.com',
+      password: '1234',
+      role_id: 4,
+    })
+
+    let last_user = await User.findByOrFail('email', email + '@mail.com')
+
+    //Crear Driver
+    await client.post('/users/drivers').json({ user_id: last_user.id }).loginAs(admin)
+    let new_driver = await Driver.findByOrFail('user_id', last_user.id)
+
+    // Creación nuevo vehiculo
+    let license_plate = 'tes999'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
+    let new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
+
+    const last_driverVehicle = await DriverVehicle.query().orderBy('id', 'desc').first()
+
+    const response = await client
+      .post('/driver-vehicles')
+      .json({
+        vehicle_id: new_vehicle.id,
+        driver_id: new_driver.id,
+        use_date: '08-09-2022 00:00:00',
+      })
+      .loginAs(admin)
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_driverVehicle = await DriverVehicle.findByOrFail('driver_id', new_driver.id)
+    assert.isAbove(new_driverVehicle.id, last_driverVehicle.id)
+    assert.equal(new_driverVehicle.driver_id, new_driver.id)
+
+    // Edición driver-vehicle
+    const edit_response = await client
+      .put(`/driver-vehicles/${new_driverVehicle.id}`)
+      .json({
+        use_date: '09-09-2022 00:00:00',
+      })
+      .loginAs(admin)
+    edit_response.assertStatus(200)
+
+    // Verificación de creación
+    const edited_driverVehicle = await DriverVehicle.findByOrFail('id', new_driverVehicle.id)
+    assert.equal(new_driverVehicle.id, edited_driverVehicle.id)
+
+    // Eliminación para no dejar basura en la base de datos
+    last_user.delete()
+    new_driver.delete()
+    new_vehicle.delete()
+    new_driverVehicle.delete()
+  })
+
   test('Delete a Driver-vehicle', async ({ client, assert }) => {
     // Write your test here
     const admin = await User.find(1)

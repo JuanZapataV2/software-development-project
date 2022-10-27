@@ -119,6 +119,59 @@ test.group('Driver', () => {
       if (new_driver) {
         assert.isAbove(new_driver.id, last_driver.id)
         assert.equal(new_driver.user_id, last_user.id)
+
+        last_user.delete()
+        new_driver.delete()
+      }
+    }
+  })
+
+  test('Edit a Driver', async ({ client, assert }) => {
+    const admin = await User.find(1)
+
+    //Crear Usuario
+    let email = (Math.random() * 10).toString(36).replace('.', '')
+
+    await client.post('/register').json({
+      name: 'NewUser',
+      email: email + '@mail.com',
+      password: '1234',
+      role_id: 4,
+    })
+
+    let last_user = await User.findByOrFail('email', email + '@mail.com')
+
+    if (last_user.id) {
+      //Crear driver
+      let last_driver = await Driver.query().orderBy('id', 'desc').first()
+      const response = await client
+        .post('/users/drivers')
+        .json({ user_id: last_user.id })
+        .loginAs(admin)
+
+      response.assertStatus(200)
+
+      // Verificación de creación
+      const new_driver = await Driver.findByOrFail('user_id', last_user.id)
+      if (new_driver) {
+        assert.isAbove(new_driver.id, last_driver.id)
+        assert.equal(new_driver.user_id, last_user.id)
+
+        const edit_response = await client
+          .put(`/users/drivers/${new_driver.id}`)
+          .json({ user_id: last_user.id })
+          .loginAs(admin)
+
+        edit_response.assertStatus(200)
+
+        // Verificación de creación
+        const edit_driver = await Driver.findByOrFail('user_id', last_user.id)
+        if (edit_driver) {
+          assert.equal(edit_driver.id, new_driver.id)
+
+          last_user.delete()
+          new_driver.delete()
+        }
       }
     }
   })

@@ -79,6 +79,47 @@ test.group('Vehicle', () => {
     new_vehicle.delete()
   })
 
+  test('Edit a Vehicle', async ({ client, assert }) => {
+    const admin = await User.find(1)
+    // Obtener ultimo id
+    let last_vehicle = await Vehicle.query().orderBy('id', 'desc').first()
+    let last_id = last_vehicle.id
+    let license_plate = 'tes999'
+
+    // Creación nuevo vehiculo
+    const response = await client
+      .post('/vehicles')
+      .json({
+        license_plate: license_plate,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
+    assert.isAbove(last_id, new_vehicle.id)
+    assert.equal(new_vehicle.license_plate, license_plate)
+
+    //Edición del vehiculo
+    const edit_response = await client
+      .put(`/vehicles/${new_vehicle.id}`)
+      .json({
+        license_plate: 'edi123',
+      })
+      .loginAs(admin)
+    edit_response.assertStatus(200)
+
+    // Verificación de edición
+    const edited_vehicle = await Vehicle.findByOrFail('id', new_vehicle.id)
+
+    assert.equal(edited_vehicle.license_plate, 'edi123')
+    assert.notEqual(edited_vehicle.license_plate, new_vehicle.license_plate)
+
+    // Eliminación para no dejar basura en la base de datos
+    new_vehicle.delete()
+  })
+
   test('Delete a vehicle', async ({ client, assert }) => {
     // Write your test here
     const admin = await User.find(1)

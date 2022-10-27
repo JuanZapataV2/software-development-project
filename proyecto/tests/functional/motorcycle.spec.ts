@@ -109,6 +109,85 @@ test.group('Motorcycle', () => {
     new_moto.delete()
   })
 
+  test('Edit a Motorcycle', async ({ client, assert }) => {
+    const admin = await User.find(1)
+
+    //Crear Vehiculo
+    let license_plate = 'zzz999'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
+    const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
+
+    //Crear moto
+    let last_moto = await Motorcycle.query().orderBy('id', 'desc').first()
+    let last_moto_id = last_moto.id
+    let helmet = 'testing'
+    const response = await client
+      .post('/vehicles/motorcycle')
+      .json({
+        helmet: helmet,
+        vehicle_id: new_vehicle.id,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_moto = await Motorcycle.findByOrFail('vehicle_id', new_vehicle.id)
+    assert.isAbove(new_moto.id, last_moto_id)
+    assert.equal(new_moto.vehicle_id, new_vehicle.id)
+
+    //Edición de moto
+    const edit_response = await client
+      .put(`/vehicles/motorcycle/${new_moto.id}`)
+      .json({
+        helmet: 'new874',
+      })
+      .loginAs(admin)
+
+    edit_response.assertStatus(200)
+
+    // Verificación de edición
+    const edited_moto = await Motorcycle.findByOrFail('id', new_moto.id)
+    assert.equal(new_moto.id, edited_moto.id)
+    assert.equal(edited_moto.helmet, 'new874')
+
+    // Eliminación para no dejar basura en la base de datos
+    new_vehicle.delete()
+    new_moto.delete()
+  })
+
+  test('Edit a Motorcycle', async ({ client, assert }) => {
+    const admin = await User.find(1)
+
+    //Crear Vehiculo
+    let license_plate = 'zzz999'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
+    const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
+
+    //Crear carro
+    let last_moto = await Motorcycle.query().orderBy('id', 'desc').first()
+    let last_moto_id = last_moto.id
+    let helmet = 'testing'
+    const response = await client
+      .post('/vehicles/motorcycle')
+      .json({
+        helmet: helmet,
+        vehicle_id: new_vehicle.id,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_moto = await Motorcycle.findByOrFail('vehicle_id', new_vehicle.id)
+    assert.isAbove(new_moto.id, last_moto_id)
+    assert.equal(new_moto.vehicle_id, new_vehicle.id)
+
+    // Eliminación para no dejar basura en la base de datos
+    new_vehicle.delete()
+    new_moto.delete()
+  })
+
   test('Delete a Motorcycle', async ({ client, assert }) => {
     // Write your test here
     const admin = await User.find(1)

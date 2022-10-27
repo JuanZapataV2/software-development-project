@@ -100,6 +100,62 @@ test.group('Profile', () => {
     last_user.delete()
     new_profile.delete()
   })
+  test('Edit a Profile', async ({ client, assert }) => {
+    const admin = await User.find(1)
+
+    //Crear Usuario
+    let email = (Math.random() * 10).toString(36).replace('.', '')
+
+    await client.post('/register').json({
+      name: 'NewUser',
+      email: email + '@mail.com',
+      password: '1234',
+      role_id: 4,
+    })
+
+    let last_user = await User.findByOrFail('email', email + '@mail.com')
+
+    //Crear perfil
+    let last_profile = await Profile.query().orderBy('id', 'desc').first()
+    let last_profile_id = last_profile.id
+    const response = await client
+      .post('/profiles')
+      .json({
+        user_id: last_user.id,
+        phone: '00000',
+        facebook_url: email,
+        instagram_url: email,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_profile = await Profile.findByOrFail('user_id', last_user.id)
+    assert.isAbove(new_profile.id, last_profile_id)
+    assert.equal(new_profile.user_id, last_user.id)
+
+    //Edición del perfil
+    const edit_response = await client
+      .put(`/profiles/${new_profile.id}`)
+      .json({
+        phone: '88888',
+        facebook_url: 'my facebook changed',
+      })
+      .loginAs(admin)
+    edit_response.assertStatus(200)
+
+    // Verificación de edición
+    const edited_profile = await Profile.findByOrFail('id', new_profile.id)
+
+    assert.equal(new_profile.id, edited_profile.id)
+    assert.notEqual(edited_profile.phone, new_profile.phone)
+    assert.notEqual(edited_profile.facebook_url, new_profile.facebook_url)
+
+    // Eliminación para no dejar basura en la base de datos
+    last_user.delete()
+    new_profile.delete()
+  })
 
   test('Delete a profile', async ({ client, assert }) => {
     // Write your test here

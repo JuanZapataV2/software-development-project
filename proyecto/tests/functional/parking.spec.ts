@@ -141,6 +141,70 @@ test.group('Parking', () => {
     }
   })
 
+  test('Edit a parking', async ({ client, assert }) => {
+    // Write your test here
+    const admin = await User.find(1)
+
+    // Creación nuevo usuario
+    let email = (Math.random() * 10).toString(36).replace('.', '')
+    await client.post('/register').json({
+      name: 'NewUser',
+      email: email + '@mail.com',
+      password: '1234',
+      role_id: 3,
+    })
+
+    //Crear parking owner
+    let last_user = await User.findByOrFail('email', email + '@mail.com')
+    let last_parking = await Parking.query().orderBy('id', 'desc').first()
+    let last_owner
+    if (last_user) {
+      await client.post('/users/owners').json({ user_id: last_user.id }).loginAs(admin)
+      last_owner = await ParkingOwner.findByOrFail('user_id', last_user.id)
+      if (last_owner) {
+        const response = await client
+          .post('/parking')
+          .json({
+            owner_id: last_owner.id,
+            name: 'parqueadero Test',
+            address: 'test123',
+            telephone: '12test',
+            number_spaces: 50,
+            open_hours: { hours: '27 hours' },
+          })
+          .loginAs(admin)
+        response.assertStatus(200)
+        if (response) {
+          // Verificación de creación
+          const new_parking = await Parking.findByOrFail('id', response.response._body.id)
+          assert.isAbove(new_parking.id, last_parking.id)
+          assert.equal(new_parking.owner_id, last_owner.id)
+
+          //Edición del parqueadero
+          const edit_response = await client
+            .put(`/parking/${new_parking.id}`)
+            .json({
+              name: 'parqueadero Test edited',
+              address: 'Edited address'
+            })
+            .loginAs(admin)
+            edit_response.assertStatus(200)
+          if (edit_response) {
+            // Verificación de creación
+            const edited_parking = await Parking.findByOrFail('id', new_parking.id)
+            assert.equal(new_parking.id, edited_parking.id)
+            assert.equal(edited_parking.address, 'Edited address')
+
+            // Eliminación para no dejar basura en la base de datos
+            last_user.delete()
+            last_owner.delete()
+            new_parking.delete()
+          }
+        }
+      }
+    }
+  })
+
   test('Delete a parking', async ({ client, assert }) => {
     // Write your test here
     const admin = await User.find(1)

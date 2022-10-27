@@ -47,7 +47,7 @@ test.group('Role-Permisos', () => {
     ])
   })
 
-  test('Create a Role-Permiso', async ({ client, assert }) => {
+  test('Create a Role-Permission', async ({ client, assert }) => {
     const admin = await User.find(1)
     // Obtener ultimo id
     let last_role = await PermissionsRole.query().orderBy('id', 'desc').first()
@@ -65,9 +65,51 @@ test.group('Role-Permisos', () => {
     response.assertStatus(200)
 
     // Verificación de creación
-    const new_role = await PermissionsRole.findByOrFail('role_id', 2)
+    const new_role = await PermissionsRole.findByOrFail('id', response.response._body.id)
     assert.isAbove(new_role.id, last_id)
     assert.equal(new_role.role_id, 2)
+
+    // Eliminación para no dejar basura en la base de datos
+    new_role.delete()
+  })
+
+  test('Edit a Role-Permission', async ({ client, assert }) => {
+    const admin = await User.find(1)
+    // Obtener ultimo id
+    let last_role = await PermissionsRole.query().orderBy('id', 'desc').first()
+    let last_id = last_role.id
+
+    // Creación nuevo permiso
+    const response = await client
+      .post('permission-roles')
+      .json({
+        role_id: 2,
+        permission_id: 3,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_role = await PermissionsRole.findByOrFail('id', response.response._body.id)
+    assert.isAbove(new_role.id, last_id)
+    assert.equal(new_role.role_id, 2)
+
+    //Edición del rol-permiso
+    const edit_response = await client
+      .put(`/permission-roles/${new_role.id}`)
+      .json({
+        role_id: 3,
+        permission_id: 3,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de edición
+    const edited_role = await PermissionsRole.findByOrFail('role_id', 2)
+    assert.equal(edited_role.role_id, new_role.role_id)
+    assert.equal(edited_role.id, new_role.id)
 
     // Eliminación para no dejar basura en la base de datos
     new_role.delete()

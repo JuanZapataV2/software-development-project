@@ -78,6 +78,46 @@ test.group('Roles', () => {
     new_role.delete()
   })
 
+  test('Edit a Role', async ({ client, assert }) => {
+    const admin = await User.find(1)
+    // Obtener ultimo id
+    let last_role = await Role.query().orderBy('id', 'desc').first()
+    let last_id = last_role.id
+    let name = 'testing'
+
+    // Creación nuevo rol
+    const response = await client
+      .post('/roles')
+      .json({
+        name: name,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_role = await Role.findByOrFail('name', name)
+    assert.isAbove(new_role.id, last_id)
+    assert.equal(new_role.name, name)
+    //Edición del rol
+
+    const edit_response = await client
+      .put(`/roles/${new_role.id}`)
+      .json({
+        name: 'Edited role',
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    const edited_role = await Role.findByOrFail('id', new_role.id)
+    assert.equal(edited_role.name, 'Edited role')
+    assert.notEqual(edited_role.name, new_role.name)
+
+    // Eliminación para no dejar basura en la base de datos
+    new_role.delete()
+  })
+
   test('Delete a Role', async ({ client, assert }) => {
     // Write your test here
     const admin = await User.find(1)

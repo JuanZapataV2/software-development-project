@@ -114,6 +114,56 @@ test.group('Car', () => {
     new_car.delete()
   })
 
+  test('Edit a Car', async ({ client, assert }) => {
+    const admin = await User.find(1)
+
+    //Crear Vehiculo
+    let license_plate = 'zzz989'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
+    const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
+
+    //Crear carro
+    let last_car = await Car.query().orderBy('id', 'desc').first()
+    let last_car_id
+    if (last_car) {
+      last_car_id = last_car.id
+    } else {
+      last_car_id = 0
+    }
+
+    const response = await client
+      .post('/vehicles/car')
+      .json({
+        type: 1,
+        vehicle_id: new_vehicle.id,
+      })
+      .loginAs(admin)
+
+    response.assertStatus(200)
+
+    // Verificación de creación
+    const new_car = await Car.findByOrFail('vehicle_id', new_vehicle.id)
+    assert.equal(new_car.vehicle_id, new_vehicle.id)
+
+    //Edición de carro
+    const edit_response = await client
+      .put(`/vehicles/car/${new_car.id}`)
+      .json({
+        type: 2,
+      })
+      .loginAs(admin)
+
+    edit_response.assertStatus(200)
+
+    // Verificación de edición
+    const edited_car = await Car.findByOrFail('id', new_car.id)
+    assert.isAbove(edited_car.type, new_car.type)
+    assert.equal(new_car.id, edited_car.id)
+    // Eliminación para no dejar basura en la base de datos
+    new_vehicle.delete()
+    new_car.delete()
+  })
+
   test('Delete a Car', async ({ client, assert }) => {
     // Write your test here
     const admin = await User.find(1)
