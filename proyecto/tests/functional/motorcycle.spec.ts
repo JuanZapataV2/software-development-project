@@ -8,27 +8,39 @@ test.group('Motorcycle', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/vehicles/motorcycle/3').loginAs(admin)
+    const response = await client.get('/vehicles/motorcycle/1').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains([
+      //   {
+      //     id: 3,
+      //     vehicle_id: 2,
+      //     helmet: "bb222",
+      //     created_at: "2022-10-18T11:20:50.000-05:00",
+      //     updated_at: "2022-10-18T11:20:50.000-05:00",
+      //     vehicle: {
+      //         id: 2,
+      //         license_plate: "bb222",
+      //         created_at: "2022-10-18T11:20:36.000-05:00",
+      //         updated_at: "2022-10-18T11:20:36.000-05:00"
+      //     }
+      // }
       {
-        id: 3,
-        vehicle_id: 2,
-        helmet: "bb222",
-        created_at: "2022-10-18T11:20:50.000-05:00",
-        updated_at: "2022-10-18T11:20:50.000-05:00",
-        vehicle: {
-            id: 2,
-            license_plate: "bb222",
-            created_at: "2022-10-18T11:20:36.000-05:00",
-            updated_at: "2022-10-18T11:20:36.000-05:00"
+        "id": 1,
+        "vehicle_id": 2,
+        "helmet": "bb222",
+        "created_at": "2022-10-27T01:07:54.000-05:00",
+        "updated_at": "2022-10-27T01:07:54.000-05:00",
+        "vehicle": {
+            "id": 2,
+            "license_plate": "bb222",
+            "created_at": "2022-10-27T01:02:12.000-05:00",
+            "updated_at": "2022-10-27T01:02:12.000-05:00"
         }
     }
-    ]
-    )
+    ])
   })
 
-  test('List all Motos', async ({ client }) => {
+  test('List all Motorcycles', async ({ client }) => {
     // Write your test here
     //Getting admin user (for auth and Motorcycle testing)
     const admin = await User.find(1)
@@ -36,19 +48,32 @@ test.group('Motorcycle', () => {
 
     response.assertStatus(200)
     response.assertBodyContains([
+      //   {
+      //     id: 3,
+      //     vehicle_id: 2,
+      //     helmet: "bb222",
+      //     created_at: "2022-10-18T11:20:50.000-05:00",
+      //     updated_at: "2022-10-18T11:20:50.000-05:00",
+      //     vehicle: {
+      //         id: 2,
+      //         license_plate: "bb222",
+      //         created_at: "2022-10-18T11:20:36.000-05:00",
+      //         updated_at: "2022-10-18T11:20:36.000-05:00"
+      //     }
+      // }
       {
-        id: 3,
-        vehicle_id: 2,
-        helmet: "bb222",
-        created_at: "2022-10-18T11:20:50.000-05:00",
-        updated_at: "2022-10-18T11:20:50.000-05:00",
-        vehicle: {
-            id: 2,
-            license_plate: "bb222",
-            created_at: "2022-10-18T11:20:36.000-05:00",
-            updated_at: "2022-10-18T11:20:36.000-05:00"
+        "id": 1,
+        "vehicle_id": 2,
+        "helmet": "bb222",
+        "created_at": "2022-10-27T01:07:54.000-05:00",
+        "updated_at": "2022-10-27T01:07:54.000-05:00",
+        "vehicle": {
+            "id": 2,
+            "license_plate": "bb222",
+            "created_at": "2022-10-27T01:02:12.000-05:00",
+            "updated_at": "2022-10-27T01:02:12.000-05:00"
         }
-    }
+    },
     ])
   })
 
@@ -56,18 +81,21 @@ test.group('Motorcycle', () => {
     const admin = await User.find(1)
 
     //Crear Vehiculo
-    let license_plate = "zzz999"
-    await client.post('/vehicles').json({license_plate: license_plate}).loginAs(admin)
+    let license_plate = 'zzz999'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
     const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
 
     //Crear carro
     let last_moto = await Motorcycle.query().orderBy('id', 'desc').first()
     let last_moto_id = last_moto.id
     let helmet = 'testing'
-    const response = await client.post('/vehicles/motorcycle').json({
+    const response = await client
+      .post('/vehicles/motorcycle')
+      .json({
         helmet: helmet,
-        vehicle_id: new_vehicle.id
-  }).loginAs(admin)
+        vehicle_id: new_vehicle.id,
+      })
+      .loginAs(admin)
 
     response.assertStatus(200)
 
@@ -86,8 +114,8 @@ test.group('Motorcycle', () => {
     const admin = await User.find(1)
 
     //Crear Vehiculo
-    let license_plate = "zzz999"
-    await client.post('/vehicles').json({license_plate: license_plate}).loginAs(admin)
+    let license_plate = 'zzz999'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
     const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
 
     //Número inicial de carros
@@ -96,15 +124,20 @@ test.group('Motorcycle', () => {
 
     // Creación de nuevo carros
     let helmet = 'testing'
-    const response = await client.post('vehicles/motorcycle').json({
-      helmet: helmet,
-      vehicle_id: new_vehicle.id
-    }).loginAs(admin)
+    const response = await client
+      .post('vehicles/motorcycle')
+      .json({
+        helmet: helmet,
+        vehicle_id: new_vehicle.id,
+      })
+      .loginAs(admin)
     response.assertStatus(200)
 
     const new_moto = await Motorcycle.findByOrFail('vehicle_id', new_vehicle.id)
     //Eliminación del carros
-    const destroy_response = await client.delete(`/vehicles/motorcycle/${new_moto.id}`).loginAs(admin)
+    const destroy_response = await client
+      .delete(`/vehicles/motorcycle/${new_moto.id}`)
+      .loginAs(admin)
     destroy_response.assertStatus(200)
 
     //Comparación de número de carros

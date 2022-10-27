@@ -8,24 +8,36 @@ test.group('Car', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/vehicles/car/1').loginAs(admin)
+    const response = await client.get('/vehicles/car/5').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains([
+      // {
+      //   id: 1,
+      //   vehicle_id: 1,
+      //   type: 1,
+      //   created_at: "2022-10-18T11:16:49.000-05:00",
+      //   updated_at: "2022-10-18T11:16:49.000-05:00",
+      //   vehicle: {
+      //       id: 1,
+      //       license_plate: "abc12a",
+      //       created_at: "2022-09-29T21:04:11.000-05:00",
+      //       updated_at: "2022-09-29T21:04:11.000-05:00"
+      //   }
+      // }
       {
-        id: 1,
-        vehicle_id: 1,
-        type: 1,
-        created_at: "2022-10-18T11:16:49.000-05:00",
-        updated_at: "2022-10-18T11:16:49.000-05:00",
-        vehicle: {
-            id: 1,
-            license_plate: "abc12a",
-            created_at: "2022-09-29T21:04:11.000-05:00",
-            updated_at: "2022-09-29T21:04:11.000-05:00"
+        "id": 5,
+        "vehicle_id": 14,
+        "type": 1,
+        "created_at": "2022-10-27T01:19:01.000-05:00",
+        "updated_at": "2022-10-27T01:19:01.000-05:00",
+        "vehicle": {
+            "id": 14,
+            "license_plate": "bb222",
+            "created_at": "2022-10-27T01:18:54.000-05:00",
+            "updated_at": "2022-10-27T01:18:54.000-05:00"
         }
-      }
-    ]
-    )
+    }
+    ])
   })
 
   test('List all Cars', async ({ client }) => {
@@ -36,19 +48,32 @@ test.group('Car', () => {
 
     response.assertStatus(200)
     response.assertBodyContains([
+      // {
+      //   id: 1,
+      //   vehicle_id: 1,
+      //   type: 1,
+      //   created_at: "2022-10-18T11:16:49.000-05:00",
+      //   updated_at: "2022-10-18T11:16:49.000-05:00",
+      //   vehicle: {
+      //       id: 1,
+      //       license_plate: "abc12a",
+      //       created_at: "2022-09-29T21:04:11.000-05:00",
+      //       updated_at: "2022-09-29T21:04:11.000-05:00"
+      //   }
+      // }
       {
-        id: 1,
-        vehicle_id: 1,
-        type: 1,
-        created_at: "2022-10-18T11:16:49.000-05:00",
-        updated_at: "2022-10-18T11:16:49.000-05:00",
-        vehicle: {
-            id: 1,
-            license_plate: "abc12a",
-            created_at: "2022-09-29T21:04:11.000-05:00",
-            updated_at: "2022-09-29T21:04:11.000-05:00"
+        "id": 5,
+        "vehicle_id": 14,
+        "type": 1,
+        "created_at": "2022-10-27T01:19:01.000-05:00",
+        "updated_at": "2022-10-27T01:19:01.000-05:00",
+        "vehicle": {
+            "id": 14,
+            "license_plate": "bb222",
+            "created_at": "2022-10-27T01:18:54.000-05:00",
+            "updated_at": "2022-10-27T01:18:54.000-05:00"
         }
-      }
+    },
     ])
   })
 
@@ -56,17 +81,26 @@ test.group('Car', () => {
     const admin = await User.find(1)
 
     //Crear Vehiculo
-    let license_plate = "zzz999"
-    await client.post('/vehicles').json({license_plate: license_plate}).loginAs(admin)
+    let license_plate = 'zzz989'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
     const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
 
     //Crear carro
     let last_car = await Car.query().orderBy('id', 'desc').first()
-    let last_car_id = last_car.id
-    const response = await client.post('/vehicles/car').json({
-        type:1,
-        vehicle_id: new_vehicle.id
-  }).loginAs(admin)
+    let last_car_id
+    if (last_car) {
+      last_car_id = last_car.id
+    } else {
+      last_car_id = 0
+    }
+
+    const response = await client
+      .post('/vehicles/car')
+      .json({
+        type: 1,
+        vehicle_id: new_vehicle.id,
+      })
+      .loginAs(admin)
 
     response.assertStatus(200)
 
@@ -85,8 +119,8 @@ test.group('Car', () => {
     const admin = await User.find(1)
 
     //Crear Vehiculo
-    let license_plate = "zzz999"
-    await client.post('/vehicles').json({license_plate: license_plate}).loginAs(admin)
+    let license_plate = 'zzz999'
+    await client.post('/vehicles').json({ license_plate: license_plate }).loginAs(admin)
     const new_vehicle = await Vehicle.findByOrFail('license_plate', license_plate)
 
     //Número inicial de carros
@@ -94,10 +128,13 @@ test.group('Car', () => {
     let number_of_cars = number_of_cars_resp[0].$extras.total
 
     // Creación de nuevo carros
-    const response = await client.post('/vehicles/car').json({
-      type:1,
-      vehicle_id: new_vehicle.id
-    }).loginAs(admin)
+    const response = await client
+      .post('/vehicles/car')
+      .json({
+        type: 1,
+        vehicle_id: new_vehicle.id,
+      })
+      .loginAs(admin)
     response.assertStatus(200)
 
     const new_car = await Car.findByOrFail('vehicle_id', new_vehicle.id)
