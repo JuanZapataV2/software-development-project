@@ -8,7 +8,7 @@ test.group('Roles', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/roles/1').loginAs(admin)
+    const response = await client.get('/roles/2').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains(
       // {
@@ -18,10 +18,10 @@ test.group('Roles', () => {
       //   updated_at: "2022-09-29T21:01:54.000-05:00"
       // }
       {
-        id: 1,
-        name: 'admin',
-        created_at: '2022-10-27T00:56:18.000-05:00',
-        updated_at: '2022-10-27T00:56:18.000-05:00',
+        id: 2,
+        name: 'visitor',
+        created_at: '2022-10-27T19:04:25.000-05:00',
+        updated_at: '2022-10-27T19:04:25.000-05:00',
       }
     )
   })
@@ -44,8 +44,8 @@ test.group('Roles', () => {
         {
           id: 2,
           name: 'visitor',
-          created_at: '2022-10-27T00:56:18.000-05:00',
-          updated_at: '2022-10-27T00:56:18.000-05:00',
+          created_at: '2022-10-27T19:04:25.000-05:00',
+          updated_at: '2022-10-27T19:04:25.000-05:00',
           permissions: [],
         },
       ]

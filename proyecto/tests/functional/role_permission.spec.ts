@@ -23,8 +23,8 @@ test.group('Role-Permisos', () => {
         id: 1,
         role_id: 1,
         permission_id: 1,
-        created_at: '2022-10-27T00:56:18.000-05:00',
-        updated_at: '2022-10-27T00:56:18.000-05:00',
+        created_at: '2022-10-27T19:04:25.000-05:00',
+        updated_at: '2022-10-27T19:04:25.000-05:00',
       }
     )
   })
@@ -41,8 +41,8 @@ test.group('Role-Permisos', () => {
         id: 1,
         role_id: 1,
         permission_id: 1,
-        created_at: '2022-10-27T00:56:18.000-05:00',
-        updated_at: '2022-10-27T00:56:18.000-05:00',
+        created_at: '2022-10-27T19:04:25.000-05:00',
+        updated_at: '2022-10-27T19:04:25.000-05:00',
       },
     ])
   })

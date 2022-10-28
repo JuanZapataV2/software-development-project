@@ -30,12 +30,12 @@ test.group('User', () => {
       // },
       {
         id: 1,
-        created_at: '2022-10-27T00:56:18.000-05:00',
-        updated_at: '2022-10-27T00:56:18.000-05:00',
+        created_at: '2022-10-27T19:04:25.000-05:00',
+        updated_at: '2022-10-27T19:04:25.000-05:00',
         name: 'Juan',
         email: 'juan@mail.com',
         password:
-          '$argon2id$v=19$t=3,m=4096,p=1$twV5Pi0CyMCilsMq6pOhZA$f3DFgVnc+R2jrpWEL5MoGhesuMMiRSywHBBZuHtcfE4',
+          '$argon2id$v=19$t=3,m=4096,p=1$Gx6nzFBQYI5eicZperXhBg$Ll+23FblkBJhCZWfQ3nUjL5fWTCFY5nkY1YmLeU183g',
         role_id: 1,
         profile: {
           id: 1,
@@ -43,8 +43,8 @@ test.group('User', () => {
           phone: '3002525',
           facebook_url: 'facebook.com',
           instagram_url: 'instagram.com',
-          created_at: '2022-10-27T00:57:47.000-05:00',
-          updated_at: '2022-10-27T00:57:47.000-05:00',
+          created_at: '2022-10-27T19:08:26.000-05:00',
+          updated_at: '2022-10-27T19:08:26.000-05:00',
         },
       },
     ])
@@ -84,27 +84,27 @@ test.group('User', () => {
       // },
       {
         id: 1,
-        created_at: '2022-10-27T00:56:18.000-05:00',
-        updated_at: '2022-10-27T00:56:18.000-05:00',
+        created_at: '2022-10-27T19:04:25.000-05:00',
+        updated_at: '2022-10-27T19:04:25.000-05:00',
         name: 'Juan',
         email: 'juan@mail.com',
         password:
-          '$argon2id$v=19$t=3,m=4096,p=1$twV5Pi0CyMCilsMq6pOhZA$f3DFgVnc+R2jrpWEL5MoGhesuMMiRSywHBBZuHtcfE4',
+          '$argon2id$v=19$t=3,m=4096,p=1$Gx6nzFBQYI5eicZperXhBg$Ll+23FblkBJhCZWfQ3nUjL5fWTCFY5nkY1YmLeU183g',
         role_id: 1,
+        role: {
+          id: 1,
+          name: 'admin',
+          created_at: '2022-10-27T19:04:25.000-05:00',
+          updated_at: '2022-10-27T19:04:25.000-05:00',
+        },
         profile: {
           id: 1,
           user_id: 1,
           phone: '3002525',
           facebook_url: 'facebook.com',
           instagram_url: 'instagram.com',
-          created_at: '2022-10-27T00:57:47.000-05:00',
-          updated_at: '2022-10-27T00:57:47.000-05:00',
-        },
-        role: {
-          id: 1,
-          name: 'admin',
-          created_at: '2022-10-27T00:56:18.000-05:00',
-          updated_at: '2022-10-27T00:56:18.000-05:00',
+          created_at: '2022-10-27T19:08:26.000-05:00',
+          updated_at: '2022-10-27T19:08:26.000-05:00',
         },
       },
     ])

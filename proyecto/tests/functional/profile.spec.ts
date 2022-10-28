@@ -26,8 +26,8 @@ test.group('Profile', () => {
         phone: '3002525',
         facebook_url: 'facebook.com',
         instagram_url: 'instagram.com',
-        created_at: '2022-10-27T00:57:47.000-05:00',
-        updated_at: '2022-10-27T00:57:47.000-05:00',
+        created_at: '2022-10-27T19:08:26.000-05:00',
+        updated_at: '2022-10-27T19:08:26.000-05:00',
       }
     )
   })
@@ -55,8 +55,8 @@ test.group('Profile', () => {
         phone: '3002525',
         facebook_url: 'facebook.com',
         instagram_url: 'instagram.com',
-        created_at: '2022-10-27T00:57:47.000-05:00',
-        updated_at: '2022-10-27T00:57:47.000-05:00',
+        created_at: '2022-10-27T19:08:26.000-05:00',
+        updated_at: '2022-10-27T19:08:26.000-05:00',
       },
     ])
   })

@@ -31,8 +31,8 @@ test.group('Parking', () => {
         telephone: '12test',
         number_spaces: 50,
         open_hours: '{"hours": "27 hours"}',
-        created_at: '2022-10-27T01:10:51.000-05:00',
-        updated_at: '2022-10-27T01:10:51.000-05:00',
+        created_at: '2022-10-27T19:04:40.000-05:00',
+        updated_at: '2022-10-27T19:04:40.000-05:00',
       }
     )
   })
@@ -80,15 +80,15 @@ test.group('Parking', () => {
         telephone: '12test',
         number_spaces: 50,
         open_hours: '{"hours": "27 hours"}',
-        created_at: '2022-10-27T01:10:51.000-05:00',
-        updated_at: '2022-10-27T01:10:51.000-05:00',
+        created_at: '2022-10-27T19:04:40.000-05:00',
+        updated_at: '2022-10-27T19:04:40.000-05:00',
+        parking_spots: [],
         parking_owner: {
           id: 1,
-          user_id: 9,
-          created_at: '2022-10-27T01:10:51.000-05:00',
-          updated_at: '2022-10-27T01:10:51.000-05:00',
+          user_id: 7,
+          created_at: '2022-10-27T19:04:40.000-05:00',
+          updated_at: '2022-10-27T19:04:40.000-05:00',
         },
-        parking_spots: [],
       },
     ])
   })
@@ -185,10 +185,10 @@ test.group('Parking', () => {
             .put(`/parking/${new_parking.id}`)
             .json({
               name: 'parqueadero Test edited',
-              address: 'Edited address'
+              address: 'Edited address',
             })
             .loginAs(admin)
-            edit_response.assertStatus(200)
+          edit_response.assertStatus(200)
           if (edit_response) {
             // Verificación de creación
             const edited_parking = await Parking.findByOrFail('id', new_parking.id)

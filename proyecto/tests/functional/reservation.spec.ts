@@ -13,20 +13,20 @@ test.group('Reservation', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/reservation/4').loginAs(admin)
+    const response = await client.get('/reservation/11').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains({
-      id: 4,
-      driver_id: 100,
-      parking_spot_id: 2,
-      vehicle_id: 175,
+      id: 11,
+      driver_id: 14,
+      parking_spot_id: 5,
+      vehicle_id: 19,
       price: 1200,
       start_date: '2022-09-09T19:42:51.000Z',
       end_date: '2022-09-09T19:42:51.000Z',
       observations: 'ya casi llego',
       state: 1,
-      created_at: '2022-10-27T15:50:16.000-05:00',
-      updated_at: '2022-10-27T15:50:16.000-05:00',
+      created_at: '2022-10-27T20:01:12.000-05:00',
+      updated_at: '2022-10-27T20:01:12.000-05:00',
     })
   })
 
@@ -39,30 +39,30 @@ test.group('Reservation', () => {
     response.assertStatus(200)
     response.assertBodyContains([
       {
-        id: 4,
-        driver_id: 100,
-        parking_spot_id: 2,
-        vehicle_id: 175,
+        id: 11,
+        driver_id: 14,
+        parking_spot_id: 5,
+        vehicle_id: 19,
         price: 1200,
         start_date: '2022-09-09T19:42:51.000Z',
         end_date: '2022-09-09T19:42:51.000Z',
         observations: 'ya casi llego',
         state: 1,
-        created_at: '2022-10-27T15:50:16.000-05:00',
-        updated_at: '2022-10-27T15:50:16.000-05:00',
-        driver: {
-          id: 100,
-          user_id: 342,
-          created_at: '2022-10-27T15:49:25.000-05:00',
-          updated_at: '2022-10-27T15:49:25.000-05:00',
-        },
+        created_at: '2022-10-27T20:01:12.000-05:00',
+        updated_at: '2022-10-27T20:01:12.000-05:00',
         parking_spot: {
-          id: 2,
-          parking_id: 1,
+          id: 5,
+          parking_id: 9,
           code: 'c1',
           observations: 'New spot',
-          created_at: '2022-10-27T14:48:22.000-05:00',
-          updated_at: '2022-10-27T14:48:22.000-05:00',
+          created_at: '2022-10-27T19:13:54.000-05:00',
+          updated_at: '2022-10-27T19:13:54.000-05:00',
+        },
+        driver: {
+          id: 14,
+          user_id: 16,
+          created_at: '2022-10-27T19:54:27.000-05:00',
+          updated_at: '2022-10-27T19:54:27.000-05:00',
         },
       },
     ])

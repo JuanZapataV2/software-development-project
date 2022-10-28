@@ -22,8 +22,8 @@ test.group('Permission', () => {
         id: 1,
         url: '/users',
         method: 'GET',
-        created_at: '2022-10-27T00:56:18.000-05:00',
-        updated_at: '2022-10-27T00:56:18.000-05:00',
+        created_at: '2022-10-27T19:04:24.000-05:00',
+        updated_at: '2022-10-27T19:04:24.000-05:00',
       }
     )
   })
@@ -67,14 +67,14 @@ test.group('Permission', () => {
         id: 1,
         url: '/users',
         method: 'GET',
-        created_at: '2022-10-27T00:56:18.000-05:00',
-        updated_at: '2022-10-27T00:56:18.000-05:00',
+        created_at: '2022-10-27T19:04:24.000-05:00',
+        updated_at: '2022-10-27T19:04:24.000-05:00',
         roles: [
           {
             id: 1,
             name: 'admin',
-            created_at: '2022-10-27T00:56:18.000-05:00',
-            updated_at: '2022-10-27T00:56:18.000-05:00',
+            created_at: '2022-10-27T19:04:25.000-05:00',
+            updated_at: '2022-10-27T19:04:25.000-05:00',
           },
         ],
       },
@@ -136,7 +136,7 @@ test.group('Permission', () => {
         method: 'PUT',
       })
       .loginAs(admin)
-      edit_response.assertStatus(200)
+    edit_response.assertStatus(200)
 
     // Verificación de creación
     const edited_permisson = await Permission.findByOrFail('id', new_permisson.id)

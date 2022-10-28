@@ -8,7 +8,7 @@ test.group('Driver', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/users/drivers/61').loginAs(admin)
+    const response = await client.get('/users/drivers/14').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains([
       // {
@@ -28,19 +28,19 @@ test.group('Driver', () => {
       //     vehicles: []
       // }
       {
-        id: 61,
-        user_id: 156,
-        created_at: '2022-10-27T02:09:01.000-05:00',
-        updated_at: '2022-10-27T02:09:01.000-05:00',
+        id: 14,
+        user_id: 16,
+        created_at: '2022-10-27T19:54:27.000-05:00',
+        updated_at: '2022-10-27T19:54:27.000-05:00',
         user: {
-          id: 156,
-          created_at: '2022-10-27T02:01:04.000-05:00',
-          updated_at: '2022-10-27T02:01:04.000-05:00',
-          name: 'Driver owner',
-          email: 'driveremail2@mail.com',
+          id: 16,
+          created_at: '2022-10-27T19:04:41.000-05:00',
+          updated_at: '2022-10-27T19:04:41.000-05:00',
+          name: 'NewOwner',
+          email: '2z5pbkuh8v5@mail.com',
           password:
-            '$argon2id$v=19$t=3,m=4096,p=1$t4wcAfocid2Pe09TihbWxQ$GSvpBC2Rw52TtWghR8hUx9yIOThWt/KMLW60stFcIqY',
-          role_id: 2,
+            '$argon2id$v=19$t=3,m=4096,p=1$ErRYZeyQG1sWmn235RbR6w$Yhhe4mzhf9M6J5n91EVDj32GFVG309BZa8E9EsCAlZo',
+          role_id: 3,
         },
         vehicles: [],
       },
@@ -71,19 +71,19 @@ test.group('Driver', () => {
       //     }
       // }
       {
-        id: 60,
-        user_id: 184,
-        created_at: '2022-10-27T02:06:58.000-05:00',
-        updated_at: '2022-10-27T02:06:58.000-05:00',
+        id: 14,
+        user_id: 16,
+        created_at: '2022-10-27T19:54:27.000-05:00',
+        updated_at: '2022-10-27T19:54:27.000-05:00',
         user: {
-          id: 184,
-          created_at: '2022-10-27T02:06:58.000-05:00',
-          updated_at: '2022-10-27T02:06:58.000-05:00',
-          name: 'NewUser',
-          email: '9ledrs9p3ua@mail.com',
+          id: 16,
+          created_at: '2022-10-27T19:04:41.000-05:00',
+          updated_at: '2022-10-27T19:04:41.000-05:00',
+          name: 'NewOwner',
+          email: '2z5pbkuh8v5@mail.com',
           password:
-            '$argon2id$v=19$t=3,m=4096,p=1$tUH9ZDVI/+nAwvTWmZ0SOQ$AzqAsMA6u27tTXPgIUeRhWF+i/GiZh9CgUm4oWqqgq4',
-          role_id: 4,
+            '$argon2id$v=19$t=3,m=4096,p=1$ErRYZeyQG1sWmn235RbR6w$Yhhe4mzhf9M6J5n91EVDj32GFVG309BZa8E9EsCAlZo',
+          role_id: 3,
         },
       },
     ])
@@ -119,9 +119,6 @@ test.group('Driver', () => {
       if (new_driver) {
         assert.isAbove(new_driver.id, last_driver.id)
         assert.equal(new_driver.user_id, last_user.id)
-
-        last_user.delete()
-        new_driver.delete()
       }
     }
   })
@@ -168,9 +165,6 @@ test.group('Driver', () => {
         const edit_driver = await Driver.findByOrFail('user_id', last_user.id)
         if (edit_driver) {
           assert.equal(edit_driver.id, new_driver.id)
-
-          last_user.delete()
-          new_driver.delete()
         }
       }
     }

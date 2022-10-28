@@ -11,16 +11,16 @@ test.group('Parking rating', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/parkingRating/1').loginAs(admin)
+    const response = await client.get('/parkingRating/5').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains({
-      id: 1,
+      id: 5,
       comment: 'muy organizado',
       rating: 5,
-      user_id: 2,
-      parking_id: 1,
-      created_at: '2022-10-27T13:59:46.000-05:00',
-      updated_at: '2022-10-27T13:59:46.000-05:00',
+      user_id: 4,
+      parking_id: 9,
+      created_at: '2022-10-27T19:16:39.000-05:00',
+      updated_at: '2022-10-27T19:16:39.000-05:00',
     })
   })
 
@@ -33,33 +33,33 @@ test.group('Parking rating', () => {
     response.assertStatus(200)
     response.assertBodyContains([
       {
-        id: 1,
+        id: 5,
         comment: 'muy organizado',
         rating: 5,
-        user_id: 2,
-        parking_id: 1,
-        created_at: '2022-10-27T13:59:46.000-05:00',
-        updated_at: '2022-10-27T13:59:46.000-05:00',
-        user: {
-          id: 2,
-          created_at: '2022-10-27T00:56:18.000-05:00',
-          updated_at: '2022-10-27T00:56:18.000-05:00',
-          name: 'Juan2',
-          email: 'juan2@mail.com',
-          password:
-            '$argon2id$v=19$t=3,m=4096,p=1$Ap9xynvwbUwESAn4IiyuIw$259aOm1kK4cUqf40OcIs5uRpFx0sefKTQcZIl6kgqtA',
-          role_id: 2,
-        },
+        user_id: 4,
+        parking_id: 9,
+        created_at: '2022-10-27T19:16:39.000-05:00',
+        updated_at: '2022-10-27T19:16:39.000-05:00',
         parking: {
-          id: 1,
-          owner_id: 1,
-          name: 'parqueadero Test',
-          address: 'test123',
-          telephone: '12test',
+          id: 9,
+          owner_id: 9,
+          name: 'parqueadero Don Juan2',
+          address: 'casa2',
+          telephone: '1242',
           number_spaces: 50,
           open_hours: '{"hours": "27 hours"}',
-          created_at: '2022-10-27T01:10:51.000-05:00',
-          updated_at: '2022-10-27T01:10:51.000-05:00',
+          created_at: '2022-10-27T19:13:37.000-05:00',
+          updated_at: '2022-10-27T19:13:37.000-05:00',
+        },
+        user: {
+          id: 4,
+          created_at: '2022-10-27T19:04:25.000-05:00',
+          updated_at: '2022-10-27T19:04:25.000-05:00',
+          name: 'Juan4',
+          email: 'juan4@mail.com',
+          password:
+            '$argon2id$v=19$t=3,m=4096,p=1$h2OtGvJ1sGvVHUd66gwooA$HjDcgsiGR4AUZ7Kbx573it28YAupm9E0gWHMD1k1lqY',
+          role_id: 1,
         },
       },
     ])

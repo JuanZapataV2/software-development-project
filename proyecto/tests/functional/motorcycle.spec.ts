@@ -8,7 +8,7 @@ test.group('Motorcycle', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/vehicles/motorcycle/1').loginAs(admin)
+    const response = await client.get('/vehicles/motorcycle/2').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains([
       //   {
@@ -25,16 +25,16 @@ test.group('Motorcycle', () => {
       //     }
       // }
       {
-        id: 1,
-        vehicle_id: 2,
+        id: 2,
+        vehicle_id: 19,
         helmet: 'bb222',
-        created_at: '2022-10-27T01:07:54.000-05:00',
-        updated_at: '2022-10-27T01:07:54.000-05:00',
+        created_at: '2022-10-27T19:15:31.000-05:00',
+        updated_at: '2022-10-27T19:15:31.000-05:00',
         vehicle: {
-          id: 2,
+          id: 19,
           license_plate: 'bb222',
-          created_at: '2022-10-27T01:02:12.000-05:00',
-          updated_at: '2022-10-27T01:02:12.000-05:00',
+          created_at: '2022-10-27T19:12:37.000-05:00',
+          updated_at: '2022-10-27T19:12:37.000-05:00',
         },
       },
     ])
@@ -62,16 +62,16 @@ test.group('Motorcycle', () => {
       //     }
       // }
       {
-        id: 1,
-        vehicle_id: 2,
+        id: 2,
+        vehicle_id: 19,
         helmet: 'bb222',
-        created_at: '2022-10-27T01:07:54.000-05:00',
-        updated_at: '2022-10-27T01:07:54.000-05:00',
+        created_at: '2022-10-27T19:15:31.000-05:00',
+        updated_at: '2022-10-27T19:15:31.000-05:00',
         vehicle: {
-          id: 2,
+          id: 19,
           license_plate: 'bb222',
-          created_at: '2022-10-27T01:02:12.000-05:00',
-          updated_at: '2022-10-27T01:02:12.000-05:00',
+          created_at: '2022-10-27T19:12:37.000-05:00',
+          updated_at: '2022-10-27T19:12:37.000-05:00',
         },
       },
     ])

@@ -9,7 +9,7 @@ test.group('Driver vehicle', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/driver-vehicles/4').loginAs(admin)
+    const response = await client.get('/driver-vehicles/3').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains(
       //   {
@@ -21,12 +21,12 @@ test.group('Driver vehicle', () => {
       //     updated_at: "2022-10-21T17:14:10.000-05:00"
       // }
       {
-        id: 4,
+        id: 3,
         vehicle_id: null,
         driver_id: null,
-        use_date: '2022-08-09T05:00:00.000Z',
-        created_at: '2022-10-27T01:10:50.000-05:00',
-        updated_at: '2022-10-27T01:10:50.000-05:00',
+        use_date: '2022-09-09T05:00:00.000Z',
+        created_at: '2022-10-27T19:49:17.000-05:00',
+        updated_at: '2022-10-27T19:49:17.000-05:00',
       }
     )
   })
@@ -48,12 +48,12 @@ test.group('Driver vehicle', () => {
       //     updated_at: "2022-10-21T17:14:10.000-05:00"
       // }
       {
-        id: 4,
+        id: 3,
         vehicle_id: null,
         driver_id: null,
-        use_date: '2022-08-09T05:00:00.000Z',
-        created_at: '2022-10-27T01:10:50.000-05:00',
-        updated_at: '2022-10-27T01:10:50.000-05:00',
+        use_date: '2022-09-09T05:00:00.000Z',
+        created_at: '2022-10-27T19:49:17.000-05:00',
+        updated_at: '2022-10-27T19:49:17.000-05:00',
       },
     ])
   })

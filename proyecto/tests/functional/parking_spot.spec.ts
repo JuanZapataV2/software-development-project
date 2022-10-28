@@ -9,15 +9,15 @@ test.group('Parking spot', () => {
     // Write your test here
     //Obtener al admin para usar su token (log)
     const admin = await User.find(1)
-    const response = await client.get('/parkingSpot/2').loginAs(admin)
+    const response = await client.get('/parkingSpot/5').loginAs(admin)
     response.assertStatus(200)
     response.assertBodyContains({
-      id: 2,
-      parking_id: 1,
+      id: 5,
+      parking_id: 9,
       code: 'c1',
       observations: 'New spot',
-      created_at: '2022-10-27T14:48:22.000-05:00',
-      updated_at: '2022-10-27T14:48:22.000-05:00',
+      created_at: '2022-10-27T19:13:54.000-05:00',
+      updated_at: '2022-10-27T19:13:54.000-05:00',
     })
   })
 
@@ -30,12 +30,12 @@ test.group('Parking spot', () => {
     response.assertStatus(200)
     response.assertBodyContains([
       {
-        id: 2,
-        parking_id: 1,
+        id: 5,
+        parking_id: 9,
         code: 'c1',
         observations: 'New spot',
-        created_at: '2022-10-27T14:48:22.000-05:00',
-        updated_at: '2022-10-27T14:48:22.000-05:00',
+        created_at: '2022-10-27T19:13:54.000-05:00',
+        updated_at: '2022-10-27T19:13:54.000-05:00',
       },
     ])
   })
