@@ -16,8 +16,7 @@ Route.group(()=>{
     Route.post("/logout","SecuritiesController.logout");
     Route.post("/reset","SecuritiesController.resetPassword");
 
-})
-//.middleware(['auth:api','permission'])
+}).middleware(['auth:api','permission'])
 
 
 

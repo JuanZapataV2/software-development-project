@@ -17,7 +17,34 @@ import Logger from '@ioc:Adonis/Core/Logger'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
+
+  protected statusPages = {
+    '404': 'errors/not-found',
+    '500..599': 'errors/server-error',
+  }
+
   constructor() {
     super(Logger)
+  }
+
+  public async handle(error: any, ctx: HttpContextContract) {
+    if(error.name == 'NotFoundException') {
+      return response.status(404).send({
+        status: 'Not Found', 
+        error: error.message // or your error message
+      })  
+    }
+  
+  // To handle other forms of exception/error
+  
+    return response.status(500).send({
+      status: 'System Error', 
+      error: 'System encountered an error' // or your error message
+    })
+
+    /**
+     * Forward rest of the exceptions to the parent class
+     */
+    return super.handle(error, ctx)
   }
 }
