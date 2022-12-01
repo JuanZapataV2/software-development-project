@@ -25,6 +25,7 @@ Route.group(()=>{
     Route.get("/parkingSpot/parking/:id_parking","ParkingSpotsController.indexParking");
     Route.post("/parkingSpot","ParkingSpotsController.store");
     Route.get("/parkingSpot/:id","ParkingSpotsController.show");
+    Route.get("/parkingSpot/getAll/:parking_id","ParkingSpotsController.getByParkingId");
     Route.put("/parkingSpot/:id","ParkingSpotsController.update");
     Route.delete("/parkingSpot/:id","ParkingSpotsController.destroy");
 }).middleware(['auth:api','permission'])

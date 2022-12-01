@@ -8,6 +8,11 @@ export default class ParkingSpotsController {
         let parkingSpots: ParkingSpot[] = await ParkingSpot.query()
         return parkingSpots
       }
+
+    public async getByParkingId({ params }: HttpContextContract) {
+      let parkingSpots: ParkingSpot[] = await ParkingSpot.query().where('parking_id', '=', params.parking_id);
+      return parkingSpots
+    }
     public async indexParking(ctx: HttpContextContract) {
       let parkingSpots: ParkingSpot[] = await ParkingSpot.query().preload('parking')
       return parkingSpots
