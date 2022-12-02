@@ -7,7 +7,7 @@ export default class ParkingSpot extends BaseModel {
   public id: number
 
   @column()
-  public occupied:boolean;
+  public occupied:number;
 
   @column()
   public code:string;

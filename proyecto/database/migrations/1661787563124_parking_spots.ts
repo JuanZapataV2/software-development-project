@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('parking_id').unsigned().references('parkings.id').onDelete('NO ACTION')
       table.string('code')
+      table.integer('occupied')
       table.string('observations').nullable()
       
       /**
