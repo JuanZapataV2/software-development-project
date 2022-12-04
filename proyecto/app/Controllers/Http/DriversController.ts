@@ -33,6 +33,11 @@ export default class DriversController {
         return driver
     }
 
+    public async getById({ params }: HttpContextContract) {
+        let driver = await Driver.query().where("user_id",params.id).preload('user').preload('vehicles');
+        return driver[0]
+    }
+
     /**
      * Actualiza la información de un conductor basado
      * en el identificador y nuevos parámetros

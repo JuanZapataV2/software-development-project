@@ -28,6 +28,14 @@ export default class VehiclesController {
         return vehicle
     }
 
+    public async findByPlate({ params }: HttpContextContract) {
+        const new_vehicle = await Vehicle.query().where("license_plate",params.license_plate).preload('cars').preload('motorcycles');
+        return new_vehicle[0]
+    }
+
+
+    
+
     /**
      * Actualiza la información de un vehículo basado
      * en el identificador y nuevos parámetros
