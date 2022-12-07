@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.integer('driver_id').unsigned().references('drivers.id').onDelete('CASCADE')
       table.integer('parking_spot_id').unsigned().references('parking_spots.id').onDelete('CASCADE')
       table.integer('vehicle_id').unsigned().references('vehicles.id').onDelete('CASCADE')
-      table.float('price')
+      table.float('price').nullable()
       table.datetime('start_date')
       table.datetime('end_date')
       table.string('observations').nullable()

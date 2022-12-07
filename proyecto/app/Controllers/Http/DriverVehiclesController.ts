@@ -44,6 +44,13 @@ export default class DriverVehiclesController {
         return vehicles[0];
     }
 
+    public async getDriverVehicles({ params }: HttpContextContract) {
+        const vehicles = await Database.rawQuery(`SELECT dv.vehicle_id, v.id, v.license_plate FROM driver_vehicles dv
+        JOIN vehicles v on v.id = dv.vehicle_id
+        WHERE dv.driver_id = ${params.driver_id};`);
+        return vehicles[0]
+    }
+
 
     public async destroy({params}:HttpContextContract) {
         const role_permission:DriverVehicle=await DriverVehicle.findOrFail(params.id);

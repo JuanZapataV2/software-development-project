@@ -49,6 +49,11 @@ export default class ParkingOwnersController {
         }
     }
 
+    public async getById({ params }: HttpContextContract) {
+        let owner = await ParkingOwner.query().where("user_id",params.id).preload('user');
+        return owner[0]
+    }
+
     /**
      * Elimina a un dueño de parqueadero basado en el identificador
      */

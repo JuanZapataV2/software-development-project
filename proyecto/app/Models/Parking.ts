@@ -32,6 +32,12 @@ export default class Parking extends BaseModel {
   @column()
   public owner_id:number;
 
+  @column()
+  public car_hour_price:number;
+
+  @column()
+  public bike_hour_price:number;
+
   @belongsTo(()=> ParkingOwner,{
     foreignKey:'owner_id',
   })

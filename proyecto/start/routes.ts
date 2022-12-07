@@ -50,6 +50,7 @@ Route.post("/users/owners","ParkingOwnersController.store");
 Route.get("/users/owners/:id","ParkingOwnersController.show");
 Route.put("/users/owners/:id","ParkingOwnersController.update");
 Route.delete("/users/owners/:id","ParkingOwnersController.destroy");
+Route.get("/users/owners/getOwner/:id","ParkingOwnersController.getById");
 
 
 Route.get("/driver-vehicles","DriverVehiclesController.index");
@@ -57,9 +58,7 @@ Route.post("/driver-vehicles","DriverVehiclesController.store");
 Route.get("/driver-vehicles/:id","DriverVehiclesController.show");
 Route.put("/driver-vehicles/:id","DriverVehiclesController.update");
 Route.delete("/driver-vehicles/:id","DriverVehiclesController.destroy");
-Route.get("/driver-vehicles/getVehicles/:driver_id","DriverVehiclesController.getOwnerVehicles");
-
-
+Route.get("/driver-vehicles/getVehicles/:driver_id","DriverVehiclesController.getDriverVehicles");
 
 
 

@@ -7,6 +7,8 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('owner_id').unsigned().references('parking_owners.id').onDelete('NO ACTION')
+      table.float('bike_hour_price');
+      table.float('car_hour_price');
       table.string('name')
       table.string('address')
       table.string('telephone')

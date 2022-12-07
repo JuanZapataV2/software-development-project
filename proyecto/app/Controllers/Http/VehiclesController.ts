@@ -1,7 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import Vehicle from '../../Models/Vehicle';
-
+import Database from '@ioc:Adonis/Lucid/Database'
 export default class VehiclesController {
 
 
@@ -33,8 +33,12 @@ export default class VehiclesController {
         return new_vehicle[0]
     }
 
-
-    
+    public async getDriverVehicles({ params }: HttpContextContract) {
+        const vehicles = await Database.rawQuery(`SELECT dv.vehicle_id, v.id, v.license_plate FROM driver_vehicles dv
+        JOIN vehicles v on v.id = dv.vehicle_id
+        WHERE dv.driver_id = ${params.driver_id};`);
+        return vehicles
+    }
 
     /**
      * Actualiza la información de un vehículo basado

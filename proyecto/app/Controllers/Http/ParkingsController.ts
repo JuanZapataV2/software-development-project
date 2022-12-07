@@ -26,7 +26,8 @@ export default class ParkingsController {
     parking.telephone = body.telephone
     parking.number_spaces = body.number_spaces
     parking.open_hours = body.open_hours
-
+    parking.bike_hour_price = body.bike_hour_price;
+    parking.car_hour_price = body.car_hour_price;
     return parking.save()
   }
 
