@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
+import ParkingSpot from 'App/Models/ParkingSpot'
 import Reservation from "App/Models/Reservation";
 
 export default class ReservationsController {
@@ -25,6 +25,9 @@ export default class ReservationsController {
       public async finish({ params }: HttpContextContract) {
         const reservation: Reservation = await Reservation.findOrFail(params.res_id)
         reservation.state = 2;
+        const spot = await ParkingSpot.findOrFail(reservation.parking_spot_id);
+        spot.occupied = 0;
+        spot.save();
         return reservation.save();
       }
 
