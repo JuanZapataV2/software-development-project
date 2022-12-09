@@ -21,7 +21,20 @@ export default class ReservationsController {
       public async show({ params }: HttpContextContract) {
         return Reservation.findOrFail(params.id)
       }
-    
+
+      public async finish({ params }: HttpContextContract) {
+        const reservation: Reservation = await Reservation.findOrFail(params.res_id)
+        reservation.state = 2;
+        return reservation.save();
+      }
+
+      
+      public async getByUser({ params }: HttpContextContract) {
+        const reservations: Reservation[] = await Reservation.query().where("driver_id",params.driver_id).preload('driver').preload('parking_spot');
+        return reservations;
+      }
+
+      
       public async update({ params, request }: HttpContextContract) {
         const body = request.body()
         const reservation: Reservation = await Reservation.findOrFail(params.id)
@@ -39,5 +52,8 @@ export default class ReservationsController {
         const the_reservation :Reservation = await Reservation.findOrFail(params.id)
         return the_reservation.delete()
       }
+
+
+
 
 }

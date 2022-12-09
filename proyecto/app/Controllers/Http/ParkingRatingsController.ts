@@ -14,6 +14,11 @@ export default class ParkingRatingsController {
     return parkingRating
   }
 
+  public async getParkingReviews({ params }: HttpContextContract) {
+    const revs: ParkingRating[] = await ParkingRating.query().where("parking_id",params.parking_id).preload('parking').preload('user');
+    return revs;
+  }
+
   public async show({ params }: HttpContextContract) {
     return ParkingRating.findOrFail(params.id)
   }

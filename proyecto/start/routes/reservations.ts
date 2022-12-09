@@ -1,5 +1,9 @@
 import Route from '@ioc:Adonis/Core/Route'
 
+Route.get("/reservation/finish/:res_id","ReservationsController.finish");
+Route.get("/reservation/myReservations/:driver_id","ReservationsController.getByUser");
+
+
 Route.group(()=>{
     //RESERVATION
     Route.get("/reservation","ReservationsController.index");
